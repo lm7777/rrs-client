@@ -1,9 +1,10 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-search-list',
     standalone: true,
-    imports: [],
+    imports: [FormsModule],
     templateUrl: './search-list.component.html',
     styleUrl: './search-list.component.scss'
 })
@@ -11,8 +12,8 @@ export class SearchListComponent implements OnInit {
     @Input() placeholder: string = 'Search...';
     @Input() options: string[] = [];
     @Output() onSelect: EventEmitter<string> = new EventEmitter<string>();
-    @ViewChild('inputElement') inputElement!: ElementRef<HTMLInputElement>;
 
+    searchValue: string = '';
     filteredOptions: string[] = [];
     showOptions: boolean = false;
 
@@ -21,20 +22,28 @@ export class SearchListComponent implements OnInit {
     }
 
     onSearchValueChanged(event: Event): void {
+        this.showOptions = true;
         const filterValue: string = (event.target as HTMLInputElement).value.toLowerCase();
         this.filteredOptions = this.options.filter(f => f.toLowerCase().includes(filterValue));
     }
 
     onKeydown(event: KeyboardEvent) {
         if (event.key == 'Enter') {
-            this.onSelectItem(this.inputElement.nativeElement.value);
+            this.onSelectItem(this.searchValue);
+        }
+        else if(event.key == 'Escape') {
+            this.resetFilter();
+            this.showOptions = false;
         }
     }
 
-
     onSelectItem(value: string): void {
-        this.inputElement.nativeElement.value = '';
-        this.filteredOptions = this.options;
+        this.resetFilter();
         this.onSelect.emit(value);
+    }
+
+    resetFilter() {
+        this.searchValue = '';
+        this.filteredOptions = this.options;
     }
 }

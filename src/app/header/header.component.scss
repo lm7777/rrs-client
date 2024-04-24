@@ -1,9 +1,9 @@
-@import '../../assets/colors';
+@use '../../assets/colors';
 
 nav {
   font-family: 'Playfair Display', serif;
   height: 50px;
-  background-color: $light-salmon;
+  background-color: colors.$light-salmon;
   margin-bottom: 20px;
   position: sticky;
   top: 0;
@@ -25,12 +25,11 @@ nav {
         font-size: 20px;
         display: block;
         padding: 10px 10px;
-        color: $black;
+        color: colors.$black;
         cursor: pointer;
 
         i {
           padding-top: 4px;
-          color: $rusty-brown;
         }
       }
     }

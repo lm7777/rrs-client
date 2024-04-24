@@ -1,18 +1,29 @@
 <section class="search-container">
+    <div class="icon">
+        <i class="material-icons">search</i>
+    </div>
     <input #inputElement placeholder="{{placeholder}}" (input)="onSearchValueChanged($event)"
+           [(ngModel)]="searchValue"
            (keydown)="onKeydown($event)"
            (blur)="showOptions = false"
            (focus)="showOptions = true"/>
+    @if (searchValue.length) {
+        <div class="icon-clear" (click)="resetFilter()">
+            <i class="material-icons">close</i>
+        </div>
+    }
+
     @if (showOptions) {
         <div class="search-content">
             @if (filteredOptions.length > 0) {
                 @for (item of filteredOptions; track item) {
                     <div class="option-item" (mousedown)="onSelectItem(item)">
+                        <i class="material-icons">add</i>
                         {{ item }}
                     </div>
                 }
             } @else {
-                <div>No results</div>
+                <div class="option-item no-result">No results</div>
             }
         </div>
     }
