@@ -1,0 +1,15 @@
+<section class="search-list">
+  <app-search-list placeholder="Search ingredients..." [options]="['beer', 'fanta', 'schnapps', 'milk', 'almond', 'sprite', 'egg', 'cheese', 'vanilla', 'flour', 'ham', 'pork']"
+                   (onSelect)="selectedValues=$event"></app-search-list>
+    @if (selectedValues) {
+        You selected: {{ selectedValues }}
+    }
+
+</section>
+<section>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquet sed diam gravida molestie. Donec a interdum est.
+    Fusce lectus est, vulputate id ligula eu, dapibus ullamcorper sem. Nullam eget commodo lorem. Etiam id hendrerit mauris, nec
+    dictum magna. Cras dictum nulla a risus lobortis lacinia. Cras luctus porta leo vitae efficitur. Sed vitae fringilla nibh.
+    Quisque et purus sed velit porttitor lacinia. Suspendisse risus sapien, molestie non semper et, blandit sit amet magna.
+    Curabitur eleifend arcu non velit fermentum auctor.
+</section>

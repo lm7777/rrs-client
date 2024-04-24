@@ -1,0 +1,17 @@
+<section class="search-container">
+    <input placeholder="{{placeholder}}" #inputElement (keyup)="onSearchValueChanged($event)" (blur)="showOptions = false"
+           (focus)="showOptions = true"/>
+    @if (showOptions) {
+        <div class="search-content">
+            @if (filteredOptions.length > 0) {
+                @for (item of filteredOptions; track item) {
+                    <div class="option-item" (mousedown)="onSelectItem(item)">
+                        {{ item }}
+                    </div>
+                }
+            } @else {
+                <div>No results</div>
+            }
+        </div>
+    }
+</section>

@@ -1,0 +1,33 @@
+:host {
+    input {
+        width: 350px;
+        border-radius: 5px;
+        border: 1px solid grey;
+        outline: none;
+    }
+
+    .search-container {
+        position: relative;
+
+        .search-content {
+            position: absolute;
+            width: 100%;
+            cursor: pointer;
+            max-height: 250px;
+            overflow: auto;
+            border: 1px solid grey;
+            border-radius: 5px;
+            background-color: white;
+            z-index: 1;
+
+            .option-item {
+                padding: 2px 5px;
+
+                &:hover {
+                    background: gray;
+                    color: white;
+                }
+            }
+        }
+    }
+}
