@@ -1,0 +1,38 @@
+@import '../../assets/colors';
+
+nav {
+  font-family: 'Playfair Display', serif;
+  height: 50px;
+  background-color: $light-salmon;
+  margin-bottom: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0 50px;
+
+    li {
+      float: left;
+
+      &.nav-right {
+        float: right;
+      }
+
+      a {
+        font-size: 20px;
+        display: block;
+        padding: 10px 10px;
+        color: $black;
+        cursor: pointer;
+
+        i {
+          padding-top: 4px;
+          color: $rusty-brown;
+        }
+      }
+    }
+  }
+}
