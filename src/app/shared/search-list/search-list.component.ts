@@ -25,6 +25,13 @@ export class SearchListComponent implements OnInit {
         this.filteredOptions = this.options.filter(f => f.toLowerCase().includes(filterValue));
     }
 
+    onKeydown(event: KeyboardEvent) {
+        if (event.key == 'Enter') {
+            this.onSelectItem(this.inputElement.nativeElement.value);
+        }
+    }
+
+
     onSelectItem(value: string): void {
         this.inputElement.nativeElement.value = '';
         this.filteredOptions = this.options;

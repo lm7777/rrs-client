@@ -1,5 +1,7 @@
 <section class="search-container">
-    <input placeholder="{{placeholder}}" #inputElement (keyup)="onSearchValueChanged($event)" (blur)="showOptions = false"
+    <input #inputElement placeholder="{{placeholder}}" (input)="onSearchValueChanged($event)"
+           (keydown)="onKeydown($event)"
+           (blur)="showOptions = false"
            (focus)="showOptions = true"/>
     @if (showOptions) {
         <div class="search-content">

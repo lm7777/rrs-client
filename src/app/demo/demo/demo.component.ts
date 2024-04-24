@@ -2,14 +2,19 @@ import { Component } from '@angular/core';
 import { SearchListComponent } from '../../shared/search-list/search-list.component';
 
 @Component({
-  selector: 'app-demo',
-  standalone: true,
+    selector: 'app-demo',
+    standalone: true,
     imports: [
         SearchListComponent
     ],
-  templateUrl: './demo.component.html',
-  styleUrl: './demo.component.scss'
+    templateUrl: './demo.component.html',
+    styleUrl: './demo.component.scss'
 })
 export class DemoComponent {
-  selectedValues: string = '';
+    ingredients: string[] = ['beer', 'fanta', 'schnapps', 'milk', 'almond', 'sprite', 'egg', 'cheese', 'vanilla', 'flour', 'ham', 'pork'];
+    selectedValues: string[] = [];
+
+    onSelect(value: string) {
+        this.selectedValues.push(value);
+    }
 }

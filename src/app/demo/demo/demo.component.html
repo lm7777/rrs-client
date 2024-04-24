@@ -1,8 +1,8 @@
 <section class="search-list">
-  <app-search-list placeholder="Search ingredients..." [options]="['beer', 'fanta', 'schnapps', 'milk', 'almond', 'sprite', 'egg', 'cheese', 'vanilla', 'flour', 'ham', 'pork']"
-                   (onSelect)="selectedValues=$event"></app-search-list>
+  <app-search-list placeholder="Search ingredients..." [options]="ingredients"
+                   (onSelect)="onSelect($event)"></app-search-list>
     @if (selectedValues) {
-        You selected: {{ selectedValues }}
+        You selected: {{ selectedValues.join(', ') }}
     }
 
 </section>
