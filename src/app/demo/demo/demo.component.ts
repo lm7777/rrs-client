@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SearchListComponent } from '../../shared/search-list/search-list/search-list.component';
+import { SearchListComponent } from '../../shared/search-list/search-list.component';
 
 @Component({
   selector: 'app-demo',

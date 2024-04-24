@@ -27,6 +27,7 @@ export class SearchListComponent implements OnInit {
 
     onSelectItem(value: string): void {
         this.inputElement.nativeElement.value = '';
+        this.filteredOptions = this.options;
         this.onSelect.emit(value);
     }
 }
