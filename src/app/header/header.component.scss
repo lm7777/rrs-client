@@ -1,9 +1,9 @@
-@use '../../assets/colors';
+@use '../../assets/abstracts';
 
 nav {
   font-family: 'Playfair Display', serif;
   height: 50px;
-  background-color: colors.$light-salmon;
+  background-color: abstracts.$light-salmon;
   margin-bottom: 20px;
   position: sticky;
   top: 0;
@@ -25,7 +25,7 @@ nav {
         font-size: 20px;
         display: block;
         padding: 10px 10px;
-        color: colors.$black;
+        color: abstracts.$black;
         cursor: pointer;
 
         i {

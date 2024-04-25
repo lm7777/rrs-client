@@ -1,9 +1,8 @@
-@use '../../../assets/colors';
-@use '../../../assets/globals';
+@use '../../../assets/abstracts';
 
 input {
-    border-radius: globals.$global-border-radius;
-    border: globals.$global-border;
+    border-radius: abstracts.$global-border-radius;
+    border: abstracts.$global-border;
     width: 100%;
     height: 30px;
     padding: 5px;

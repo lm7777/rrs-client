@@ -1,10 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-@use 'assets/colors';
+@use 'assets/abstracts';
 
 body {
     margin: 0;
 }
 
 i {
-    color: colors.$rusty-brown;
+    color: abstracts.$rusty-brown;
 }

@@ -1,9 +1,9 @@
-@use '../../../assets/colors';
+@use '../../../assets/abstracts';
 
 :host {
     input {
         width: 350px;
-        border-radius: 5px;
+        border-radius: abstracts.$global-border-radius;
         outline: none;
         border: none;
     }
@@ -11,8 +11,8 @@
     .search-container {
         display: flex;
         padding: 10px 0;
-        border: 1px solid colors.$light-salmon;
-        border-radius: 5px;
+        border-radius: abstracts.$global-border-radius;
+        border: abstracts.$global-border;
         min-width: 200px;
         position: relative;
 
@@ -40,9 +40,9 @@
         width: 100%;
         max-height: 250px;
         overflow: auto;
-        border: 1px solid colors.$light-salmon;
-        border-radius: 5px;
-        background-color: colors.$white;
+        border-radius: abstracts.$global-border-radius;
+        border: abstracts.$global-border;
+        background-color: abstracts.$white;
         z-index: 1;
 
         .option-item {
@@ -58,8 +58,8 @@
             }
 
             &:hover:not(.no-result) {
-                background: colors.$light-salmon;
-                color: colors.$white;
+                background: abstracts.$light-salmon;
+                color: abstracts.$white;
             }
         }
     }
