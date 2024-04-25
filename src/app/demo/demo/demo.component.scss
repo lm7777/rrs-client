@@ -1,7 +1,19 @@
+@use '../../../assets/abstracts';
+
 :host {
+    h3 {
+        padding: 0 10px;
+        color: abstracts.$rusty-brown;
+    }
+
     .search-list {
         display: flex;
         gap: 10px;
-        padding: 10px;
+        margin: 10px;
+    }
+
+    .input-demo {
+        width: 250px;
+        margin: 10px;
     }
 }

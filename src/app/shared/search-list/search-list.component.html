@@ -2,15 +2,18 @@
     <div class="icon">
         <i class="material-icons">search</i>
     </div>
-    <input class="search-input" [(ngModel)]="searchValue" placeholder="{{placeholder}}" (input)="onSearchValueChanged($event)"
-           (keydown)="onKeydown($event)" (blur)="showOptions = false" (focus)="showOptions = true"/>
-    @if (searchValue.length) {
-        <div class="icon clear" (click)="resetFilter()">
-            <i class="material-icons">close</i>
-        </div>
-    }
+    <rrs-input class="search-input"
+               [value]="searchValue"
+               [placeholder]="placeholder"
+               [showClearIcon]="true"
+               (valueChange)="onValueChanged($event)"
+               (valueClear)="resetFilter()"
+               (focus)="showOptions = true"
+               (blur)="showOptions = false"
+               (keydown)="onKeydown($event)">
+    </rrs-input>
     @if (showOptions) {
-        <div class="search-content">
+        <div class="search-options">
             @if (filteredOptions.length > 0) {
                 @for (item of filteredOptions; track item) {
                     <div class="option-item" (mousedown)="onSelectItem(item)">

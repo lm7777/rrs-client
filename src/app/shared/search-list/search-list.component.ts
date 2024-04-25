@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { InputComponent } from '../input/input.component';
 
 @Component({
     selector: 'rrs-search-list',
     standalone: true,
-    imports: [FormsModule],
+    imports: [FormsModule, InputComponent],
     templateUrl: './search-list.component.html',
     styleUrl: './search-list.component.scss'
 })
@@ -21,10 +22,10 @@ export class SearchListComponent implements OnInit {
         this.filteredOptions = this.options;
     }
 
-    onSearchValueChanged(event: Event): void {
+    onValueChanged(value: string): void {
+        this.searchValue = value;
         this.showOptions = true;
-        const filterValue: string = (event.target as HTMLInputElement).value.toLowerCase();
-        this.filteredOptions = this.options.filter(f => f.toLowerCase().includes(filterValue));
+        this.filteredOptions = this.options.filter(f => f.toLowerCase().includes(value));
     }
 
     onKeydown(event: KeyboardEvent) {

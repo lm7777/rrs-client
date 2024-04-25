@@ -1,14 +1,18 @@
+<h3>Search list:</h3>
 <section class="search-list">
-  <rrs-search-list placeholder="Search ingredients..." [options]="ingredients"
-                   (onSelect)="onSelect($event)"></rrs-search-list>
+    <rrs-search-list placeholder="Search ingredients..." [options]="ingredients"
+                     (onSelect)="onSelect($event)"></rrs-search-list>
     @if (selectedValues) {
         You selected: {{ selectedValues.join(', ') }}
     }
 
 </section>
-
-<div style="width: 250px; margin: 10px">
-    <rrs-input
-        type="text"
-        placeholder="Enter Name..."></rrs-input>
+<h3>Inputs:</h3>
+<div class="input-demo">
+    <rrs-input placeholder="Enter Name..."
+               value="Lorem ipsum dolor sit amet, consectetur adipiscing elit."></rrs-input>
+    <br>
+    <rrs-input placeholder="Enter Name..."
+               [showClearIcon]="true"
+               value="Lorem ipsum dolor sit amet, consectetur adipiscing elit."></rrs-input>
 </div>

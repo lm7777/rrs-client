@@ -1,42 +1,32 @@
 @use '../../../assets/abstracts';
 
 :host {
-    input {
-        width: 350px;
-        border-radius: abstracts.$global-border-radius;
-        outline: none;
-        border: none;
-    }
-
     .search-container {
         display: flex;
-        padding: 10px 0;
+        padding: 5px 0;
         border-radius: abstracts.$global-border-radius;
         border: abstracts.$global-border;
-        min-width: 200px;
+        min-width: 250px;
         position: relative;
 
         .icon {
             display: flex;
             align-items: center;
-            padding: 0 10px;
-
-            &.clear {
-                position: absolute;
-                padding: 0;
-                cursor: pointer;
-                right: 10px;
-            }
+            padding: 0 5px;
         }
 
         .search-input {
-            padding-right: 40px;
+            width: 100%;
+
+            ::ng-deep input {
+                border: none;
+            }
         }
     }
 
-    .search-content {
+    .search-options {
         position: absolute;
-        top: 46px;
+        top: 36px;
         width: 100%;
         max-height: 250px;
         overflow: auto;
@@ -49,7 +39,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 10px 5px;
+            padding: 5px;
             cursor: pointer;
 
             &.no-result {

@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {FormsModule} from "@angular/forms";
 
 @Component({
@@ -11,6 +11,24 @@ import {FormsModule} from "@angular/forms";
   styleUrl: './input.component.scss'
 })
 export class InputComponent {
-    @Input() type: string = '';
+    @Input() value: string = '';
+    @Input() type: string = 'text';
     @Input() placeholder: string = '';
+    @Input() disabled: boolean = false;
+    @Input() showClearIcon: boolean = false;
+
+    @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
+    @Output() valueClear: EventEmitter<string> = new EventEmitter<string>();
+    @Output() focus: EventEmitter<string> = new EventEmitter();
+    @Output() blur: EventEmitter<string> = new EventEmitter();
+
+    onInputChanged() {
+        this.valueChange.emit(this.value);
+    }
+
+    onClearValue()
+    {
+        this.value = '';
+        this.valueClear.emit();
+    }
 }
