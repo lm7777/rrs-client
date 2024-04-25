@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { SearchListComponent } from '../../shared/search-list/search-list.component';
+import {InputComponent} from "../../shared/input/input.component";
 
 @Component({
     selector: 'rrs-demo',
     standalone: true,
     imports: [
-        SearchListComponent
+        SearchListComponent,
+        InputComponent
     ],
     templateUrl: './demo.component.html',
     styleUrl: './demo.component.scss'
