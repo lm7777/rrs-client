@@ -20,12 +20,17 @@
             display: flex;
             align-items: center;
             padding: 0 10px;
+
+            &.clear {
+                position: absolute;
+                padding: 0;
+                cursor: pointer;
+                right: 10px;
+            }
         }
 
-        .icon-clear {
-            position: absolute;
-            cursor: pointer;
-            right: 5px;
+        .search-input {
+            padding-right: 40px;
         }
     }
 

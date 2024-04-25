@@ -1,6 +1,6 @@
 <section class="search-list">
-  <app-search-list placeholder="Search ingredients..." [options]="ingredients"
-                   (onSelect)="onSelect($event)"></app-search-list>
+  <rrs-search-list placeholder="Search ingredients..." [options]="ingredients"
+                   (onSelect)="onSelect($event)"></rrs-search-list>
     @if (selectedValues) {
         You selected: {{ selectedValues.join(', ') }}
     }

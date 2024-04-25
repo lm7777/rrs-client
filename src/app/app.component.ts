@@ -4,7 +4,7 @@ import {HeaderComponent} from "./header/header.component";
 import {InputComponent} from "./shared/input/input.component";
 
 @Component({
-  selector: 'app-root',
+  selector: 'rrs-root',
   standalone: true,
     imports: [RouterOutlet, HeaderComponent, InputComponent],
   templateUrl: './app.component.html',

@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-    selector: 'app-search-list',
+    selector: 'rrs-search-list',
     standalone: true,
     imports: [FormsModule],
     templateUrl: './search-list.component.html',
@@ -28,12 +28,13 @@ export class SearchListComponent implements OnInit {
     }
 
     onKeydown(event: KeyboardEvent) {
-        if (event.key == 'Enter') {
-            this.onSelectItem(this.searchValue);
-        }
-        else if(event.key == 'Escape') {
-            this.resetFilter();
-            this.showOptions = false;
+        switch (event.key) {
+            case 'Enter':
+                this.onSelectItem(this.searchValue);
+                break;
+            case 'Escape':
+                this.resetFilter();
+                break;
         }
     }
 
@@ -44,6 +45,7 @@ export class SearchListComponent implements OnInit {
 
     resetFilter() {
         this.searchValue = '';
+        this.showOptions = false;
         this.filteredOptions = this.options;
     }
 }

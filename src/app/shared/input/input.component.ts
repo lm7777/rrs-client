@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 
 @Component({
-  selector: 'app-input',
+  selector: 'rrs-input',
   standalone: true,
     imports: [
         FormsModule

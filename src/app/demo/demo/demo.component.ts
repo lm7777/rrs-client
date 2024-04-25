@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { SearchListComponent } from '../../shared/search-list/search-list.component';
 
 @Component({
-    selector: 'app-demo',
+    selector: 'rrs-demo',
     standalone: true,
     imports: [
         SearchListComponent
