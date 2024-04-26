@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { InputComponent } from '../input/input.component';
 
@@ -9,23 +9,25 @@ import { InputComponent } from '../input/input.component';
     templateUrl: './search-list.component.html',
     styleUrl: './search-list.component.scss'
 })
-export class SearchListComponent implements OnInit {
+export class SearchListComponent implements OnChanges {
     @Input() placeholder: string = 'Search...';
     @Input() options: string[] = [];
     @Output() onSelect: EventEmitter<string> = new EventEmitter<string>();
 
     searchValue: string = '';
-    filteredOptions: string[] = [];
+    searchOptions: string[] = [];
     showOptions: boolean = false;
 
-    ngOnInit(): void {
-        this.filteredOptions = this.options;
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes.options) {
+            this.searchOptions = changes.options.currentValue;
+        }
     }
 
     onValueChanged(value: string): void {
         this.searchValue = value;
         this.showOptions = true;
-        this.filteredOptions = this.options.filter(f => f.toLowerCase().includes(value));
+        this.searchOptions = this.options.filter(f => f.toLowerCase().includes(value));
     }
 
     onKeydown(event: KeyboardEvent) {
@@ -47,6 +49,6 @@ export class SearchListComponent implements OnInit {
     resetFilter() {
         this.searchValue = '';
         this.showOptions = false;
-        this.filteredOptions = this.options;
+        this.searchOptions = this.options;
     }
 }

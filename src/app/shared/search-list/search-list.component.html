@@ -14,8 +14,8 @@
     </rrs-input>
     @if (showOptions) {
         <div class="search-options">
-            @if (filteredOptions.length > 0) {
-                @for (item of filteredOptions; track item) {
+            @if (searchOptions.length > 0) {
+                @for (item of searchOptions; track item) {
                     <div class="option-item" (mousedown)="onSelectItem(item)">
                         <i class="material-icons">add</i>
                         {{ item }}
