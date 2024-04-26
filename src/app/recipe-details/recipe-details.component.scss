@@ -1,0 +1,168 @@
+@use '../../assets/abstracts';
+
+.container {
+    margin: 20px;
+    padding: 20px;
+    text-align: justify;
+
+    .details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        i {
+            font-size: 40px;
+        }
+
+        .details-name {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            i {
+                margin-right: 10px;
+            }
+        }
+    }
+
+    .description {
+        margin: 0 50px;
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0;
+
+            li {
+                padding: 5px 30px;
+                &:first-child {
+                    padding-left: 0;
+                }
+                &:nth-child(2) {
+                    border-left: 1px solid abstracts.$rusty-brown;
+                    border-right: 1px solid abstracts.$rusty-brown;
+                }
+                span{
+                    display: block;
+                }
+            }
+        }
+
+        .recipe-image {
+            img {
+                width: 100%;
+            }
+        }
+    }
+
+    .cooking-process {
+        display: flex;
+        margin: 0 50px;
+
+        .ingredients {
+            width: 20%;
+            min-width: 150px;
+            padding-right: 50px;
+
+            .ingredients-list {
+                margin-bottom: 50px;
+                .ingredient {
+                    display: block;
+                    min-height: 24px;
+                    position: relative;
+                    padding-left: 40px;
+                    margin-bottom: 12px;
+                    cursor: pointer;
+                    line-height: 1.5;
+
+                    input {
+                        position: absolute;
+                        opacity: 0;
+                        cursor: pointer;
+                        height: 0;
+                        width: 0;
+                        border: abstracts.$global-border;
+
+                        &:checked ~ .checkmark:after {
+                            display: block;
+
+                        }
+                    }
+
+                    .checkmark {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        height: 22px;
+                        width: 22px;
+                        border-radius: 50%;
+                        border: abstracts.$global-border;
+
+                        &:after {
+                            content: "";
+                            position: absolute;
+                            display: none;
+                            left: 11px;
+                            top: -7px;
+                            width: 7px;
+                            height: 20px;
+                            border: abstracts.$global-border;
+                            border-width: 0 2px 2px 0;
+                            transform: rotate(45deg);
+                        }
+                    }
+                }
+            }
+
+            ul {
+                width: 100%;
+                padding: 0;
+
+                li {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 5px 0 5px 0;
+                    border-bottom: abstracts.$global-border;
+                }
+            }
+        }
+
+
+        .instructions {
+            width: 80%;
+
+            .instructions-list {
+            padding: 0;
+            li {
+                position: relative;
+                padding-left: 40px;
+                padding-bottom: 30px;
+            }
+            li span {
+                position: absolute;
+                top: 2px;
+                left: 0;
+                width: 24px;
+                height: 24px;
+                border-radius: 100%;
+                background-color: abstracts.$rusty-brown;
+                font-weight: 500;
+                font-size: 14px;
+                color: abstracts.$white;
+                text-align: center;
+                line-height: 22px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+        }
+        }
+    }
+
+    ul {
+        list-style: none;
+    }
+}
