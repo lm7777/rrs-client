@@ -1,0 +1,22 @@
+@use '../../../assets/abstracts';
+
+:host {
+    .recipes-list-container {
+        margin: 20px;
+        padding: 20px;
+
+        .recipes-list {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(4, min-content);
+            justify-content: center;
+            gap: 40px;
+
+            img {
+                border-radius: abstracts.$global-border-radius;
+                width: 380px;
+                height: 240px;
+            }
+        }
+    }
+}
