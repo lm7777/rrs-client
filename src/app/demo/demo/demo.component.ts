@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { SearchListComponent } from '../../shared/search-list/search-list.component';
-import { InputComponent } from "../../shared/input/input.component";
+import { SearchListComponent } from '../../shared/components/search-list/search-list.component';
+import { InputComponent } from "../../shared/components/input/input.component";
 
 @Component({
     selector: 'rrs-demo',

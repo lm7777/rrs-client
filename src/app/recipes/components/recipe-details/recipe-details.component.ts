@@ -1,7 +1,7 @@
 import { Component, OnInit}  from '@angular/core';
 import { ActivatedRoute, Params } from "@angular/router";
-import { Recipe } from "./recipe.model";
-import { RecipeService } from "./recipe.service";
+import { Recipe } from "../../data/recipe.model";
+import { RecipeService } from "../../services/recipe.service";
 
 @Component({
     selector: 'rrs-recipe-details',
