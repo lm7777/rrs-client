@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Recipe } from "../data/recipe.model";
+import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class RecipeService {
@@ -594,8 +595,8 @@ export class RecipeService {
 
     constructor() { }
 
-    getLatestRecipes(): Recipe[] {
-        return this.recipes;
+    getLatestRecipes(): Observable<Recipe[]> {
+        return of(this.recipes);
     }
 
     getRecipe(id: number): Recipe {

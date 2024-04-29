@@ -2,7 +2,7 @@
     <h1>Latest Recipes</h1>
     <div class="recipes-list">
         @for (recipe of recipesList; track recipe.id) {
-            <div class="recipe" (click)="navigateToRecipeDetails(recipe.id)">
+            <div class="recipe" (click)="navigateToRecipeDetails(recipe.id)" [title]="recipe.name">
                 <div class="image">
                     <img src='{{ recipe.imageUrl }}' alt="{{recipe.name}}"/>
                 </div>
@@ -11,15 +11,10 @@
                 </div>
             </div>
         }
+        <rrs-intersection (onIntersection)="loadRecipes()"></rrs-intersection>
     </div>
 </div>
-<div style="height: 1px;" (infiniteScroll)="loadRecipes()"></div>
 
 @if (loading) {
-    <div class="loading-container">
-        <div class="loading-content">
-            <i class="material-icons loading-animation">sync</i>
-            <div class="loading-text">Loading...</div>
-        </div>
-    </div>
+    <rrs-loading [loading]="loading"></rrs-loading>
 }

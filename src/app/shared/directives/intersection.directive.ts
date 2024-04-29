@@ -2,11 +2,11 @@ import { AfterViewInit, Directive, ElementRef, EventEmitter, Inject, OnInit, Out
 import { isPlatformBrowser } from '@angular/common';
 
 @Directive({
-    selector: '[infiniteScroll]',
+    selector: '[intersection]',
     standalone: true
 })
-export class InfiniteScrollDirective implements AfterViewInit, OnInit {
-    @Output() infiniteScroll: EventEmitter<boolean> = new EventEmitter<boolean>();
+export class IntersectionDirective implements AfterViewInit, OnInit {
+    @Output() intersection: EventEmitter<boolean> = new EventEmitter<boolean>();
     observer!: IntersectionObserver;
 
     constructor(private element: ElementRef,
@@ -28,8 +28,8 @@ export class InfiniteScrollDirective implements AfterViewInit, OnInit {
     intersectionObserver() {
         this.observer = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) {
-                this.infiniteScroll.emit(true);
+                this.intersection.emit(true);
             }
-        }, {threshold: 0.5});
+        }, {threshold: 1});
     }
 }
