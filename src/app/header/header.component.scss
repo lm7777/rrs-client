@@ -1,7 +1,7 @@
 @use '../../assets/abstracts';
 
 nav {
-  font-family: 'Playfair Display', serif;
+  font-family: abstracts.$generic-header-font;
   height: 50px;
   background-color: abstracts.$light-salmon;
   margin-bottom: 20px;
