@@ -5,11 +5,11 @@
             <h1>{{ recipe.name }}</h1>
         </div>
         <div class="details-rating">
-            <i class="material-icons material-icons-right">star</i>
-            <i class="material-icons material-icons-right">star</i>
-            <i class="material-icons material-icons-right">star</i>
-            <i class="material-icons material-icons-right">star</i>
-            <i class="material-icons material-icons-right">star</i>
+
+            @for (star of stars; track star) {
+                <i class="material-icons material-icons-right">{{ star }}</i>
+            }
+
         </div>
     </div>
     <div class="description">
