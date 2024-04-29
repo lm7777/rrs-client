@@ -2,7 +2,7 @@
     <div class="details">
         <div class="details-name">
             <i class="material-icons material-icons-left">bookmark</i>
-            <h1>Recipe Name</h1>
+            <h1>{{ recipe.name }}</h1>
         </div>
         <div class="details-rating">
             <i class="material-icons material-icons-right">star</i>
@@ -13,31 +13,23 @@
         </div>
     </div>
     <div class="description">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit, sed do eiusmod tempor incididunt ut labore
-            e dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse
-            cillum doloree fugiat nulla pariatur. Excepteur
-            sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>{{ recipe.description }}</p>
         <div class="recipe-image">
-            <img src="https://fabrx.co/preview/tastebite/assets/images/menus/menu144.jpg" >
+            <img [src]="recipe.imageUrl">
         </div>
         <div class="cooking-time">
             <ul>
                 <li>
                     <span>PREP TIME</span>
-                    <span>15 MIN</span>
+                    <span>{{ recipe.prepTime }}</span>
                 </li>
                 <li>
                     <span>COOK TIME</span>
-                    <span>30 MIN</span>
+                    <span>{{ recipe.cookTime }}</span>
                 </li>
                 <li>
                     <span>SERVINGS</span>
-                    <span>2 PEOPLE</span>
+                    <span>{{ recipe.servings }}</span>
                 </li>
             </ul>
         </div>
@@ -46,90 +38,40 @@
         <div class="ingredients">
             <h2>Ingredients</h2>
             <div class="ingredients-list">
-                <h4>For dough</h4>
-                <label class="ingredient">100g ingredient
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="ingredient">100g ingredient
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="ingredient">100g ingredient
-                    <input type="checkbox" checked>
-                    <span class="checkmark"></span>
-                </label>
-                <label class="ingredient">100g ingredient
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                </label>
-
-                <h4>For filling</h4>
-                <label class="ingredient">100g ingredient
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="ingredient">100g ingredient
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="ingredient">100g ingredient
-                    <input type="checkbox" checked>
-                    <span class="checkmark"></span>
-                </label>
-                <label class="ingredient">100g ingredient
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                </label>
+                @for (ingredient of recipe.ingredients; track ingredient) {
+                    <div>
+                        <h4>{{ ingredient.category }}</h4>
+                        @for (item of ingredient.items; track item) {
+                            <label class="ingredient">{{ item.name }}
+                                {{ item.quantity }}
+                                {{ item.unitOfMeasurement }}
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                        }
+                    </div>
+                }
             </div>
 
             <h2>Nutrition Facts</h2>
-            <ul>
-                <li>
-                    <span>Calories</span>
-                    <span>200</span>
-                </li>
-                <li>
-                    <span>Calories</span>
-                    <span>7.7g</span>
-                </li>
-                <li>
-                    <span>Calories</span>
-                    <span>10g</span>
-                </li>
-                <li>
-                    <span>Calories</span>
-                    <span>10g</span>
-                </li>
+            <ul class="nutrition">
+                @for (nutritionFact of recipe.nutritionFacts; track nutritionFact) {
+                    <li>
+                        <span>{{ nutritionFact.name }}</span>
+                        <span>{{ nutritionFact.value }}</span>
+                    </li>
+                }
             </ul>
         </div>
         <div class="instructions">
             <h2>Instructions</h2>
             <ul class="instructions-list">
-                <li>
-                    <span>1</span>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore
-                </li>
-                <li>
-                    <span>2</span>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore e dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut iquip ex ea commodo consequat.
-                </li>
-                <li>
-                    <span>3</span>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore
-                </li>
-                <li>
-                    <span>4</span>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore e dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut iquip ex ea commodo consequat.
-                </li>
+                @for (instruction of recipe.instructions; track instruction) {
+                    <li>
+                        <span>1</span>
+                        {{ instruction }}
+                    </li>
+                }
             </ul>
         </div>
     </div>

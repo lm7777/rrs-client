@@ -126,6 +126,10 @@
                     border-bottom: abstracts.$global-border;
                 }
             }
+
+            .nutrition {
+                width: 250px;
+            }
         }
 
 
@@ -133,32 +137,33 @@
             width: 80%;
 
             .instructions-list {
-            padding: 0;
-            li {
-                position: relative;
-                padding-left: 40px;
-                padding-bottom: 30px;
-            }
-            li span {
-                position: absolute;
-                top: 2px;
-                left: 0;
-                width: 24px;
-                height: 24px;
-                border-radius: 100%;
-                background-color: abstracts.$rusty-brown;
-                font-weight: 500;
-                font-size: 14px;
-                color: abstracts.$white;
-                text-align: center;
-                line-height: 22px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-            }
+                padding: 0;
 
-        }
+                li {
+                    position: relative;
+                    padding-left: 40px;
+                    padding-bottom: 30px;
+
+                    span {
+                        position: absolute;
+                        top: 2px;
+                        left: 0;
+                        width: 24px;
+                        height: 24px;
+                        border-radius: 100%;
+                        background-color: abstracts.$rusty-brown;
+                        font-weight: 500;
+                        font-size: 14px;
+                        color: abstracts.$white;
+                        text-align: center;
+                        line-height: 22px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                    }
+                }
+            }
         }
     }
 
