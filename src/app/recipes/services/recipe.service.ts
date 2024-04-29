@@ -221,10 +221,382 @@ export class RecipeService {
                 'Roll the chilled truffles in cocoa powder, chopped nuts, or shredded coconut to coat them completely.',
                 'Store the chocolate truffles in an airtight container in the refrigerator until ready to serve. Enjoy!',
             ]
-        }
+        },
+        {
+            id: 5,
+            name: 'Recipe 5',
+            category: 'Dessert',
+            rating: 2.7,
+            description: 'Indulgent homemade chocolate truffles coated in cocoa powder, nuts, or shredded coconut.',
+            imageUrl: 'https://fabrx.co/preview/tastebite/assets/images/menus/menu7.jpg',
+            prepTime: '20 MIN',
+            cookTime: '0 MIN',
+            servings: '24 truffles',
+            ingredients: [
+                {
+                    category: 'Truffles',
+                    items: [
+                        { name: 'Dark chocolate', quantity: 100, unitOfMeasurement: 'g' },
+                        { name: 'Heavy cream', quantity: 60, unitOfMeasurement: 'ml' },
+                        { name: 'Butter', quantity: 40, unitOfMeasurement: 'g' },
+                        { name: 'Vanilla extract', quantity: 1, unitOfMeasurement: 'teaspoon' }
+                    ]
+                },
+                {
+                    category: 'Coatings',
+                    items: [
+                        { name: 'Cocoa powder', quantity: 15, unitOfMeasurement: 'g' },
+                        { name: 'Chopped nuts', quantity: 20, unitOfMeasurement: 'g' },
+                        { name: 'Shredded coconut', quantity: 20, unitOfMeasurement: 'g' }
+                    ]
+                }
+            ],
+            nutritionFacts: [
+                { name: 'Calories', value: '120' },
+                { name: 'Protein', value: '1g' },
+                { name: 'Fat', value: '9g' },
+                { name: 'Carbohydrates', value: '9g' }
+            ],
+            instructions: [
+                'Chop the dark chocolate into small pieces and place in a heatproof bowl.',
+                'In a small saucepan, heat the heavy cream and butter over medium heat until it just begins to simmer. Pour the hot cream mixture over the chopped chocolate and let it sit for 1-2 minutes.',
+                'Stir the chocolate and cream together until smooth and glossy. Mix in vanilla extract.',
+                'Cover the bowl with plastic wrap and refrigerate for at least 2 hours, or until the mixture is firm enough to scoop.',
+                'Using a spoon or a small scoop, portion out the chocolate mixture and roll it into balls. Place the truffles on a baking sheet lined with parchment paper.',
+                'Once all the truffles are rolled, place the baking sheet in the refrigerator for another 15-20 minutes to firm up the truffles.',
+                'Roll the chilled truffles in cocoa powder, chopped nuts, or shredded coconut to coat them completely.',
+                'Store the chocolate truffles in an airtight container in the refrigerator until ready to serve. Enjoy!',
+            ]
+        },
+        {
+            id: 6,
+            name: 'Recipe 6',
+            category: 'Dessert',
+            rating: 2.7,
+            description: 'Indulgent homemade chocolate truffles coated in cocoa powder, nuts, or shredded coconut.',
+            imageUrl: 'https://fabrx.co/preview/tastebite/assets/images/menus/menu16.jpg',
+            prepTime: '20 MIN',
+            cookTime: '0 MIN',
+            servings: '24 truffles',
+            ingredients: [
+                {
+                    category: 'Truffles',
+                    items: [
+                        { name: 'Dark chocolate', quantity: 100, unitOfMeasurement: 'g' },
+                        { name: 'Heavy cream', quantity: 60, unitOfMeasurement: 'ml' },
+                        { name: 'Butter', quantity: 40, unitOfMeasurement: 'g' },
+                        { name: 'Vanilla extract', quantity: 1, unitOfMeasurement: 'teaspoon' }
+                    ]
+                },
+                {
+                    category: 'Coatings',
+                    items: [
+                        { name: 'Cocoa powder', quantity: 15, unitOfMeasurement: 'g' },
+                        { name: 'Chopped nuts', quantity: 20, unitOfMeasurement: 'g' },
+                        { name: 'Shredded coconut', quantity: 20, unitOfMeasurement: 'g' }
+                    ]
+                }
+            ],
+            nutritionFacts: [
+                { name: 'Calories', value: '120' },
+                { name: 'Protein', value: '1g' },
+                { name: 'Fat', value: '9g' },
+                { name: 'Carbohydrates', value: '9g' }
+            ],
+            instructions: [
+                'Chop the dark chocolate into small pieces and place in a heatproof bowl.',
+                'In a small saucepan, heat the heavy cream and butter over medium heat until it just begins to simmer. Pour the hot cream mixture over the chopped chocolate and let it sit for 1-2 minutes.',
+                'Stir the chocolate and cream together until smooth and glossy. Mix in vanilla extract.',
+                'Cover the bowl with plastic wrap and refrigerate for at least 2 hours, or until the mixture is firm enough to scoop.',
+                'Using a spoon or a small scoop, portion out the chocolate mixture and roll it into balls. Place the truffles on a baking sheet lined with parchment paper.',
+                'Once all the truffles are rolled, place the baking sheet in the refrigerator for another 15-20 minutes to firm up the truffles.',
+                'Roll the chilled truffles in cocoa powder, chopped nuts, or shredded coconut to coat them completely.',
+                'Store the chocolate truffles in an airtight container in the refrigerator until ready to serve. Enjoy!',
+            ]
+        },
+        {
+            id: 7,
+            name: 'Recipe 7',
+            category: 'Dessert',
+            rating: 2.7,
+            description: 'Indulgent homemade chocolate truffles coated in cocoa powder, nuts, or shredded coconut.',
+            imageUrl: 'https://fabrx.co/preview/tastebite/assets/images/menus/menu18.jpg',
+            prepTime: '20 MIN',
+            cookTime: '0 MIN',
+            servings: '24 truffles',
+            ingredients: [
+                {
+                    category: 'Truffles',
+                    items: [
+                        { name: 'Dark chocolate', quantity: 100, unitOfMeasurement: 'g' },
+                        { name: 'Heavy cream', quantity: 60, unitOfMeasurement: 'ml' },
+                        { name: 'Butter', quantity: 40, unitOfMeasurement: 'g' },
+                        { name: 'Vanilla extract', quantity: 1, unitOfMeasurement: 'teaspoon' }
+                    ]
+                },
+                {
+                    category: 'Coatings',
+                    items: [
+                        { name: 'Cocoa powder', quantity: 15, unitOfMeasurement: 'g' },
+                        { name: 'Chopped nuts', quantity: 20, unitOfMeasurement: 'g' },
+                        { name: 'Shredded coconut', quantity: 20, unitOfMeasurement: 'g' }
+                    ]
+                }
+            ],
+            nutritionFacts: [
+                { name: 'Calories', value: '120' },
+                { name: 'Protein', value: '1g' },
+                { name: 'Fat', value: '9g' },
+                { name: 'Carbohydrates', value: '9g' }
+            ],
+            instructions: [
+                'Chop the dark chocolate into small pieces and place in a heatproof bowl.',
+                'In a small saucepan, heat the heavy cream and butter over medium heat until it just begins to simmer. Pour the hot cream mixture over the chopped chocolate and let it sit for 1-2 minutes.',
+                'Stir the chocolate and cream together until smooth and glossy. Mix in vanilla extract.',
+                'Cover the bowl with plastic wrap and refrigerate for at least 2 hours, or until the mixture is firm enough to scoop.',
+                'Using a spoon or a small scoop, portion out the chocolate mixture and roll it into balls. Place the truffles on a baking sheet lined with parchment paper.',
+                'Once all the truffles are rolled, place the baking sheet in the refrigerator for another 15-20 minutes to firm up the truffles.',
+                'Roll the chilled truffles in cocoa powder, chopped nuts, or shredded coconut to coat them completely.',
+                'Store the chocolate truffles in an airtight container in the refrigerator until ready to serve. Enjoy!',
+            ]
+        },
+        {
+            id: 8,
+            name: 'Recipe 8',
+            category: 'Dessert',
+            rating: 2.7,
+            description: 'Indulgent homemade chocolate truffles coated in cocoa powder, nuts, or shredded coconut.',
+            imageUrl: 'https://fabrx.co/preview/tastebite/assets/images/menus/menu41.jpg',
+            prepTime: '20 MIN',
+            cookTime: '0 MIN',
+            servings: '24 truffles',
+            ingredients: [
+                {
+                    category: 'Truffles',
+                    items: [
+                        { name: 'Dark chocolate', quantity: 100, unitOfMeasurement: 'g' },
+                        { name: 'Heavy cream', quantity: 60, unitOfMeasurement: 'ml' },
+                        { name: 'Butter', quantity: 40, unitOfMeasurement: 'g' },
+                        { name: 'Vanilla extract', quantity: 1, unitOfMeasurement: 'teaspoon' }
+                    ]
+                },
+                {
+                    category: 'Coatings',
+                    items: [
+                        { name: 'Cocoa powder', quantity: 15, unitOfMeasurement: 'g' },
+                        { name: 'Chopped nuts', quantity: 20, unitOfMeasurement: 'g' },
+                        { name: 'Shredded coconut', quantity: 20, unitOfMeasurement: 'g' }
+                    ]
+                }
+            ],
+            nutritionFacts: [
+                { name: 'Calories', value: '120' },
+                { name: 'Protein', value: '1g' },
+                { name: 'Fat', value: '9g' },
+                { name: 'Carbohydrates', value: '9g' }
+            ],
+            instructions: [
+                'Chop the dark chocolate into small pieces and place in a heatproof bowl.',
+                'In a small saucepan, heat the heavy cream and butter over medium heat until it just begins to simmer. Pour the hot cream mixture over the chopped chocolate and let it sit for 1-2 minutes.',
+                'Stir the chocolate and cream together until smooth and glossy. Mix in vanilla extract.',
+                'Cover the bowl with plastic wrap and refrigerate for at least 2 hours, or until the mixture is firm enough to scoop.',
+                'Using a spoon or a small scoop, portion out the chocolate mixture and roll it into balls. Place the truffles on a baking sheet lined with parchment paper.',
+                'Once all the truffles are rolled, place the baking sheet in the refrigerator for another 15-20 minutes to firm up the truffles.',
+                'Roll the chilled truffles in cocoa powder, chopped nuts, or shredded coconut to coat them completely.',
+                'Store the chocolate truffles in an airtight container in the refrigerator until ready to serve. Enjoy!',
+            ]
+        },
+        {
+            id: 9,
+            name: 'Recipe 9',
+            category: 'Dessert',
+            rating: 2.7,
+            description: 'Indulgent homemade chocolate truffles coated in cocoa powder, nuts, or shredded coconut.',
+            imageUrl: 'https://fabrx.co/preview/tastebite/assets/images/menus/menu42.jpg',
+            prepTime: '20 MIN',
+            cookTime: '0 MIN',
+            servings: '24 truffles',
+            ingredients: [
+                {
+                    category: 'Truffles',
+                    items: [
+                        { name: 'Dark chocolate', quantity: 100, unitOfMeasurement: 'g' },
+                        { name: 'Heavy cream', quantity: 60, unitOfMeasurement: 'ml' },
+                        { name: 'Butter', quantity: 40, unitOfMeasurement: 'g' },
+                        { name: 'Vanilla extract', quantity: 1, unitOfMeasurement: 'teaspoon' }
+                    ]
+                },
+                {
+                    category: 'Coatings',
+                    items: [
+                        { name: 'Cocoa powder', quantity: 15, unitOfMeasurement: 'g' },
+                        { name: 'Chopped nuts', quantity: 20, unitOfMeasurement: 'g' },
+                        { name: 'Shredded coconut', quantity: 20, unitOfMeasurement: 'g' }
+                    ]
+                }
+            ],
+            nutritionFacts: [
+                { name: 'Calories', value: '120' },
+                { name: 'Protein', value: '1g' },
+                { name: 'Fat', value: '9g' },
+                { name: 'Carbohydrates', value: '9g' }
+            ],
+            instructions: [
+                'Chop the dark chocolate into small pieces and place in a heatproof bowl.',
+                'In a small saucepan, heat the heavy cream and butter over medium heat until it just begins to simmer. Pour the hot cream mixture over the chopped chocolate and let it sit for 1-2 minutes.',
+                'Stir the chocolate and cream together until smooth and glossy. Mix in vanilla extract.',
+                'Cover the bowl with plastic wrap and refrigerate for at least 2 hours, or until the mixture is firm enough to scoop.',
+                'Using a spoon or a small scoop, portion out the chocolate mixture and roll it into balls. Place the truffles on a baking sheet lined with parchment paper.',
+                'Once all the truffles are rolled, place the baking sheet in the refrigerator for another 15-20 minutes to firm up the truffles.',
+                'Roll the chilled truffles in cocoa powder, chopped nuts, or shredded coconut to coat them completely.',
+                'Store the chocolate truffles in an airtight container in the refrigerator until ready to serve. Enjoy!',
+            ]
+        },
+        {
+            id: 10,
+            name: 'Recipe 10',
+            category: 'Dessert',
+            rating: 2.7,
+            description: 'Indulgent homemade chocolate truffles coated in cocoa powder, nuts, or shredded coconut.',
+            imageUrl: 'https://fabrx.co/preview/tastebite/assets/images/menus/menu44.jpg',
+            prepTime: '20 MIN',
+            cookTime: '0 MIN',
+            servings: '24 truffles',
+            ingredients: [
+                {
+                    category: 'Truffles',
+                    items: [
+                        { name: 'Dark chocolate', quantity: 100, unitOfMeasurement: 'g' },
+                        { name: 'Heavy cream', quantity: 60, unitOfMeasurement: 'ml' },
+                        { name: 'Butter', quantity: 40, unitOfMeasurement: 'g' },
+                        { name: 'Vanilla extract', quantity: 1, unitOfMeasurement: 'teaspoon' }
+                    ]
+                },
+                {
+                    category: 'Coatings',
+                    items: [
+                        { name: 'Cocoa powder', quantity: 15, unitOfMeasurement: 'g' },
+                        { name: 'Chopped nuts', quantity: 20, unitOfMeasurement: 'g' },
+                        { name: 'Shredded coconut', quantity: 20, unitOfMeasurement: 'g' }
+                    ]
+                }
+            ],
+            nutritionFacts: [
+                { name: 'Calories', value: '120' },
+                { name: 'Protein', value: '1g' },
+                { name: 'Fat', value: '9g' },
+                { name: 'Carbohydrates', value: '9g' }
+            ],
+            instructions: [
+                'Chop the dark chocolate into small pieces and place in a heatproof bowl.',
+                'In a small saucepan, heat the heavy cream and butter over medium heat until it just begins to simmer. Pour the hot cream mixture over the chopped chocolate and let it sit for 1-2 minutes.',
+                'Stir the chocolate and cream together until smooth and glossy. Mix in vanilla extract.',
+                'Cover the bowl with plastic wrap and refrigerate for at least 2 hours, or until the mixture is firm enough to scoop.',
+                'Using a spoon or a small scoop, portion out the chocolate mixture and roll it into balls. Place the truffles on a baking sheet lined with parchment paper.',
+                'Once all the truffles are rolled, place the baking sheet in the refrigerator for another 15-20 minutes to firm up the truffles.',
+                'Roll the chilled truffles in cocoa powder, chopped nuts, or shredded coconut to coat them completely.',
+                'Store the chocolate truffles in an airtight container in the refrigerator until ready to serve. Enjoy!',
+            ]
+        },
+        {
+            id: 11,
+            name: 'Recipe 11',
+            category: 'Dessert',
+            rating: 2.7,
+            description: 'Indulgent homemade chocolate truffles coated in cocoa powder, nuts, or shredded coconut.',
+            imageUrl: 'https://fabrx.co/preview/tastebite/assets/images/menus/menu122.jpg',
+            prepTime: '20 MIN',
+            cookTime: '0 MIN',
+            servings: '24 truffles',
+            ingredients: [
+                {
+                    category: 'Truffles',
+                    items: [
+                        { name: 'Dark chocolate', quantity: 100, unitOfMeasurement: 'g' },
+                        { name: 'Heavy cream', quantity: 60, unitOfMeasurement: 'ml' },
+                        { name: 'Butter', quantity: 40, unitOfMeasurement: 'g' },
+                        { name: 'Vanilla extract', quantity: 1, unitOfMeasurement: 'teaspoon' }
+                    ]
+                },
+                {
+                    category: 'Coatings',
+                    items: [
+                        { name: 'Cocoa powder', quantity: 15, unitOfMeasurement: 'g' },
+                        { name: 'Chopped nuts', quantity: 20, unitOfMeasurement: 'g' },
+                        { name: 'Shredded coconut', quantity: 20, unitOfMeasurement: 'g' }
+                    ]
+                }
+            ],
+            nutritionFacts: [
+                { name: 'Calories', value: '120' },
+                { name: 'Protein', value: '1g' },
+                { name: 'Fat', value: '9g' },
+                { name: 'Carbohydrates', value: '9g' }
+            ],
+            instructions: [
+                'Chop the dark chocolate into small pieces and place in a heatproof bowl.',
+                'In a small saucepan, heat the heavy cream and butter over medium heat until it just begins to simmer. Pour the hot cream mixture over the chopped chocolate and let it sit for 1-2 minutes.',
+                'Stir the chocolate and cream together until smooth and glossy. Mix in vanilla extract.',
+                'Cover the bowl with plastic wrap and refrigerate for at least 2 hours, or until the mixture is firm enough to scoop.',
+                'Using a spoon or a small scoop, portion out the chocolate mixture and roll it into balls. Place the truffles on a baking sheet lined with parchment paper.',
+                'Once all the truffles are rolled, place the baking sheet in the refrigerator for another 15-20 minutes to firm up the truffles.',
+                'Roll the chilled truffles in cocoa powder, chopped nuts, or shredded coconut to coat them completely.',
+                'Store the chocolate truffles in an airtight container in the refrigerator until ready to serve. Enjoy!',
+            ]
+        },
+        {
+            id: 12,
+            name: 'Recipe 12',
+            category: 'Dessert',
+            rating: 2.7,
+            description: 'Indulgent homemade chocolate truffles coated in cocoa powder, nuts, or shredded coconut.',
+            imageUrl: 'https://fabrx.co/preview/tastebite/assets/images/menus/menu144.jpg',
+            prepTime: '20 MIN',
+            cookTime: '0 MIN',
+            servings: '24 truffles',
+            ingredients: [
+                {
+                    category: 'Truffles',
+                    items: [
+                        { name: 'Dark chocolate', quantity: 100, unitOfMeasurement: 'g' },
+                        { name: 'Heavy cream', quantity: 60, unitOfMeasurement: 'ml' },
+                        { name: 'Butter', quantity: 40, unitOfMeasurement: 'g' },
+                        { name: 'Vanilla extract', quantity: 1, unitOfMeasurement: 'teaspoon' }
+                    ]
+                },
+                {
+                    category: 'Coatings',
+                    items: [
+                        { name: 'Cocoa powder', quantity: 15, unitOfMeasurement: 'g' },
+                        { name: 'Chopped nuts', quantity: 20, unitOfMeasurement: 'g' },
+                        { name: 'Shredded coconut', quantity: 20, unitOfMeasurement: 'g' }
+                    ]
+                }
+            ],
+            nutritionFacts: [
+                { name: 'Calories', value: '120' },
+                { name: 'Protein', value: '1g' },
+                { name: 'Fat', value: '9g' },
+                { name: 'Carbohydrates', value: '9g' }
+            ],
+            instructions: [
+                'Chop the dark chocolate into small pieces and place in a heatproof bowl.',
+                'In a small saucepan, heat the heavy cream and butter over medium heat until it just begins to simmer. Pour the hot cream mixture over the chopped chocolate and let it sit for 1-2 minutes.',
+                'Stir the chocolate and cream together until smooth and glossy. Mix in vanilla extract.',
+                'Cover the bowl with plastic wrap and refrigerate for at least 2 hours, or until the mixture is firm enough to scoop.',
+                'Using a spoon or a small scoop, portion out the chocolate mixture and roll it into balls. Place the truffles on a baking sheet lined with parchment paper.',
+                'Once all the truffles are rolled, place the baking sheet in the refrigerator for another 15-20 minutes to firm up the truffles.',
+                'Roll the chilled truffles in cocoa powder, chopped nuts, or shredded coconut to coat them completely.',
+                'Store the chocolate truffles in an airtight container in the refrigerator until ready to serve. Enjoy!',
+            ]
+        },
     ];
 
     constructor() { }
+
+    getLatestRecipes(): Recipe[] {
+        return this.recipes;
+    }
 
     getRecipe(id: number): Recipe {
         return this.recipes.find(recipe => recipe.id === id)!;

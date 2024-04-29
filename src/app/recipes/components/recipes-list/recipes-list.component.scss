@@ -1,21 +1,124 @@
 @use '../../../../assets/abstracts';
 
 :host {
+
     .recipes-list-container {
         margin: 20px;
         padding: 20px;
 
         .recipes-list {
-            padding: 20px;
             display: grid;
-            grid-template-columns: repeat(4, min-content);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
             justify-content: center;
-            gap: 40px;
+            gap: 30px;
 
-            img {
-                border-radius: abstracts.$global-border-radius;
-                width: 380px;
-                height: 240px;
+            .recipe {
+                display: flex;
+                flex-direction: column;
+
+                .title {
+                    padding: 20px 0 0;
+                    align-self: end;
+                }
+
+                .image {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    transition: abstracts.$global-025-transition;
+
+                    img {
+                        border-radius: abstracts.$global-border-radius;
+                        height: 100%;
+                        width: 100%;
+                        object-fit: cover;
+                    }
+                }
+
+                .image:hover {
+                    scale: 1.02;
+                    cursor: pointer;
+
+                    &::before {
+                        background: none;
+                    }
+                }
+
+                .image:before,
+                .image:after {
+                    content: "";
+                    position: absolute;
+                    height: 100%;
+                    width: 100%;
+                    border-radius: abstracts.$global-border-radius;
+                    transition: abstracts.$global-025-transition;
+                }
+
+                .image:before {
+                    background-color: hsla(0, 0%, 11%, 0.1);
+                }
+
+                .image::after {
+                    top: 4%;
+                    right: -3%;
+                    background-color: abstracts.$light-salmon;
+                    opacity: 0.4;
+                    z-index: abstracts.$global-negative-z-index;
+                }
+            }
+        }
+    }
+
+    .loading-container {
+        position: fixed;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        .loading-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px 40px;
+            border-radius: abstracts.$global-border-radius;
+            border: abstracts.$global-border;
+            background-color: abstracts.$light-salmon;
+
+            .material-icons {
+                &.loading-animation {
+                    animation-name: spin;
+                    animation-duration: 2000ms;
+                    animation-iteration-count: infinite;
+                    animation-timing-function: linear;
+                }
+
+                @keyframes spin {
+                    from {
+                        transform: rotate(0deg);
+                    }
+                    to {
+                        transform: rotate(-360deg);
+                    }
+                }
+            }
+
+            .loading-text {
+                animation-name: text;
+                animation-duration: 2000ms;
+                color: abstracts.$black;
+
+                @keyframes text {
+                    from {
+                        opacity: 0.5;
+                        transform: translateX(20px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
+                }
             }
         }
     }
