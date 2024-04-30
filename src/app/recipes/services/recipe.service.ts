@@ -225,9 +225,9 @@ export class RecipeService {
         },
         {
             id: 5,
-            name: 'Recipe 5',
+            name: 'Long recipe name made with low rating for testing long name and low rating',
             category: 'Dessert',
-            rating: 1.9,
+            rating: 0.6,
             description: 'Indulgent homemade chocolate truffles coated in cocoa powder, nuts, or shredded coconut.',
             imageUrl: 'https://fabrx.co/preview/tastebite/assets/images/menus/menu7.jpg',
             prepTime: '20 MIN',
@@ -599,7 +599,7 @@ export class RecipeService {
         return of(this.recipes);
     }
 
-    getRecipe(id: number): Recipe {
-        return this.recipes.find(recipe => recipe.id === id)!;
+    getRecipe(id: number): Observable<Recipe> {
+        return of(this.recipes.find(recipe => recipe.id === id)!);
     }
 }

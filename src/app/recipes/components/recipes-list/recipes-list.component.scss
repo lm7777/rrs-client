@@ -13,12 +13,32 @@
             gap: 30px;
 
             .recipe {
-                display: flex;
-                flex-direction: column;
+                display: grid;
+                grid-template-rows: 250px min-content;
+                row-gap: 20px;
 
-                .title {
-                    padding: 20px 0 0;
-                    align-self: end;
+                .description {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap:10px;
+
+                    white-space: nowrap;
+                    overflow: hidden;
+
+                    .rating {
+                        display: flex;
+                        align-items: center;
+
+                        ::ng-deep i {
+                            font-size: 14px;
+                        }
+                    }
+
+                    .title {
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                    }
                 }
 
                 .image {

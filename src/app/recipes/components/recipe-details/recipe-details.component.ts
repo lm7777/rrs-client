@@ -1,38 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from "@angular/router";
 import { Recipe } from "../../data/recipe.model";
 import { RecipeService } from "../../services/recipe.service";
+import { Subscription } from 'rxjs';
+import { StarRatingComponent } from '../../../shared/components/star-rating/star-rating.component';
 
 @Component({
     selector: 'rrs-recipe-details',
     standalone: true,
-    imports: [],
-    providers: [RecipeService, Recipe],
+    imports: [StarRatingComponent],
+    providers: [RecipeService],
     templateUrl: './recipe-details.component.html',
     styleUrl: './recipe-details.component.scss'
 })
-export class RecipeDetailsComponent implements OnInit{
+export class RecipeDetailsComponent implements OnInit, OnDestroy {
+    recipe: Recipe = new Recipe();
 
-    stars: string[] = [];
-    constructor( private route: ActivatedRoute,
-                 public recipe: Recipe,
-                 private recipeService: RecipeService) {
+    private getRecipeSubscription: Subscription;
+
+    constructor(private route: ActivatedRoute,
+                private recipeService: RecipeService) {
     }
+
+    ngOnDestroy(): void {
+        this.getRecipeSubscription?.unsubscribe();
+    }
+
     ngOnInit() {
         this.route.params
-            .subscribe(
-                (params: Params) => {
-                    const recipeId= +params['id'];
-                     this.recipe = this.recipeService.getRecipe(recipeId);
+            .subscribe((params: Params) => {
+                    const recipeId: number = +params['id'];
+                    this.getRecipeSubscription = this.recipeService.getRecipe(recipeId).subscribe((result: Recipe) => {
+                        this.recipe = result;
+                    });
                 }
             );
-
-        const fullStars = Math.floor(this.recipe.rating);
-        const halfStar = this.recipe.rating % 1 >= 0.5 ? 1 : 0;
-        const emptyStars = 5 - fullStars - halfStar;
-
-        this.stars = Array(fullStars).fill('star')
-            .concat(halfStar ? ['star_half'] : [])
-            .concat(Array(emptyStars).fill('star_border'));
     }
 }
