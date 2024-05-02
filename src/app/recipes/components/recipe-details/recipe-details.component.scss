@@ -18,10 +18,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-
+            cursor: pointer;
             i {
                 margin-right: 10px;
             }
+        }
+
+        rrs-star-rating {
+            display: flex;
+            align-items: center;
         }
     }
 

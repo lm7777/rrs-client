@@ -46,4 +46,17 @@ export class RecipeDetailsComponent implements OnInit, OnDestroy {
             }
         );
     }
+
+    bookmarkRecipe() {
+        const index = this.user.favoriteRecipes.indexOf(this.recipe.id);
+        if (index !== -1) {
+            this.user.favoriteRecipes = this.user.favoriteRecipes.filter(recipeId => recipeId !== this.recipe.id)
+        } else {
+            this.user.favoriteRecipes = [...this.user.favoriteRecipes, this.recipe.id];
+        }
+    }
+
+    isRecipeBookmarked(): boolean {
+        return this.user.favoriteRecipes.includes(this.recipe.id);
+    }
 }
