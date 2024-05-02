@@ -1,4 +1,15 @@
-@for (star of stars; track star) {
-    <i class="material-icons">{{ star }}</i>
+@if (reviewMode) {
+    <p>Rate this recipe!</p>
+}
+
+@for (star of stars; track star; let i = $index) {
+    <i
+        class="material-icons"
+        (click)="countStar(i+1)"
+        id="{{'starId'+i}}"
+        [ngClass]="{'selected': (i < selectedStars && reviewMode)}"
+        (mouseover)="addClass(i)"
+        (mouseout)="removeClass(i)"
+        >{{ star }}</i>
 }
 <p>({{ reviewCount }})</p>

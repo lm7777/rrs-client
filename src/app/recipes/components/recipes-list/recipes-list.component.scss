@@ -27,9 +27,6 @@
                     overflow: hidden;
 
                     .rating {
-                        display: flex;
-                        align-items: center;
-
                         ::ng-deep i {
                             font-size: 14px;
                         }

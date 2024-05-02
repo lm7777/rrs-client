@@ -47,7 +47,7 @@ export class RecipeDetailsComponent implements OnInit, OnDestroy {
         );
     }
 
-    bookmarkRecipe() {
+    toggleBookmarkRecipe() {
         const index = this.user.favoriteRecipes.indexOf(this.recipe.id);
         if (index !== -1) {
             this.user.favoriteRecipes = this.user.favoriteRecipes.filter(recipeId => recipeId !== this.recipe.id)
