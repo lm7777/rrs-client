@@ -11,7 +11,7 @@ import { User } from '../../../user/data/user.model';
     selector: 'rrs-recipe-details',
     standalone: true,
     imports: [StarRatingComponent],
-    providers: [UserService, RecipeService],
+    providers: [],
     templateUrl: './recipe-details.component.html',
     styleUrl: './recipe-details.component.scss'
 })

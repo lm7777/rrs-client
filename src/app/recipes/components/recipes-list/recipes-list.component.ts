@@ -10,7 +10,7 @@ import { StarRatingComponent } from '../../../shared/components/star-rating/star
 @Component({
     selector: 'rrs-recipes-list',
     standalone: true,
-    providers: [RecipeService],
+    providers: [],
     imports: [IntersectionComponent, LoadingComponent, StarRatingComponent],
     templateUrl: './recipes-list.component.html',
     styleUrl: './recipes-list.component.scss'

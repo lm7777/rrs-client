@@ -2,7 +2,9 @@ import { Injectable } from "@angular/core";
 import { Recipe } from "../data/recipe.model";
 import { Observable, of } from 'rxjs';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class RecipeService {
 
     recipes: Recipe[] = [
