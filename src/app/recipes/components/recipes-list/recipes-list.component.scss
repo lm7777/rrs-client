@@ -33,6 +33,11 @@
                         ::ng-deep i {
                             font-size: 14px;
                         }
+
+                        rrs-star-rating {
+                            display: flex;
+                            align-items: center;
+                        }
                     }
 
                     .title {

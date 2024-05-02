@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class StarRatingComponent implements OnInit {
     @Input() rating: number = 0;
+    @Input() reviewCount: number = 0;
 
     stars: string[] = [];
 
