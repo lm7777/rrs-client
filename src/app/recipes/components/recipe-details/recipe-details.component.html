@@ -62,9 +62,9 @@
         <div class="instructions">
             <h2>Instructions</h2>
             <ul class="instructions-list">
-                @for (instruction of recipe.instructions; track instruction) {
+                @for (instruction of recipe.instructions; track instruction; let step = $index) {
                     <li>
-                        <span>1</span>
+                        <span>{{ step + 1 }}</span>
                         {{ instruction }}
                     </li>
                 }

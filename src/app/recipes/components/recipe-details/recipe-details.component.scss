@@ -50,7 +50,14 @@
 
         .recipe-image {
             img {
-                width: 100%;
+                width: 50%;
+                height: 50%;
+            }
+        }
+
+        .cooking-time {
+            span:nth-of-type(even) {
+                font-weight: bold;
             }
         }
     }
@@ -63,6 +70,7 @@
             width: 20%;
             min-width: 150px;
             padding-right: 50px;
+            font-weight: 200;
 
             .ingredients-list {
                 margin-bottom: 50px;
