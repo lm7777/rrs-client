@@ -1,37 +1,41 @@
 @use '../../assets/abstracts';
 
-nav {
-  font-family: abstracts.$generic-header-font;
-  height: 50px;
-  background-color: abstracts.$light-salmon;
-  margin-bottom: 20px;
-  position: sticky;
-  top: 0;
-  z-index: 1;
+:host {
+    nav {
+        font-family: abstracts.$generic-header-font;
+        height: 50px;
+        background-color: abstracts.$light-salmon;
+        margin-bottom: 20px;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        user-select: none;
 
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0 50px;
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0 50px;
 
-    li {
-      float: left;
+            li {
+                float: left;
 
-      &.nav-right {
-        float: right;
-      }
+                &.nav-right {
+                    float: right;
+                }
 
-      a {
-        font-size: 20px;
-        display: block;
-        padding: 10px 10px;
-        color: abstracts.$black;
-        cursor: pointer;
+                a {
+                    font-size: 20px;
+                    display: block;
+                    padding: 10px 10px;
+                    color: abstracts.$black;
+                    cursor: pointer;
 
-        i {
-          padding-top: 4px;
+                    i {
+                        padding-top: 4px;
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }
+

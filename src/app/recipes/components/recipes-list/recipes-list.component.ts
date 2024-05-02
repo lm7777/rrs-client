@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { RecipeService } from '../../services/recipe.service';
 import { Recipe } from '../../data/recipe.model';
 import { LoadingComponent } from '../../../shared/components/loading/loading.component';
 import { finalize, Subscription } from 'rxjs';
 import { IntersectionComponent } from '../../../shared/components/intersection/intersection.component';
 import { StarRatingComponent } from '../../../shared/components/star-rating/star-rating.component';
+import { NavigationService } from '../../../shared/services/navigation.service';
 
 @Component({
     selector: 'rrs-recipes-list',
@@ -21,8 +21,8 @@ export class RecipesListComponent implements OnDestroy {
 
     private getLatestRecipesSubscription: Subscription;
 
-    constructor(protected router: Router,
-                private recipeService: RecipeService) {
+    constructor(private recipeService: RecipeService,
+                private navigationService: NavigationService) {
     }
 
     ngOnDestroy(): void {
@@ -43,8 +43,8 @@ export class RecipesListComponent implements OnDestroy {
         }, 500)
     }
 
-    navigateToRecipeDetails(id: number) {
-        this.router.navigate(['recipe/' + id]).then();
+    navigateToRecipeDetails(recipeId: number) {
+        this.navigationService.navigateToRecipeDetails(recipeId);
     }
 }
 
