@@ -1,0 +1,44 @@
+<div class="container">
+    <h1>Profile</h1>
+    <div class="profile-container">
+        <div class="buttons">
+            <button type="button">Change Password</button>
+        </div>
+        <div class="preferences">
+            <div>
+                <h3>LIKED</h3>
+                    <rrs-search-list placeholder="Search ingredients..." [options]="ingredients"
+                                     (onSelect)="onSelect($event, 'liked')"></rrs-search-list>
+
+                    @if (likedIngredients) {
+                        <ul class="instructions-list">
+                            @for (ingredient of likedIngredients; track ingredient; let index = $index) {
+                                <li>
+                                    <span (click)="onDeleteIngredient(index, 'liked')"><i class="material-icons">close</i></span>
+                                    {{ ingredient }}
+                                </li>
+                            }
+                        </ul>
+                    }
+            </div>
+            <div>
+                <h3>AVOID</h3>
+                <rrs-search-list placeholder="Search ingredients..." [options]="ingredients"
+                                 (onSelect)="onSelect($event, 'avoid')"></rrs-search-list>
+
+                @if (likedIngredients) {
+                    <ul class="instructions-list">
+                        @for (ingredient of avoidIngredients; track ingredient; let index = $index) {
+                            <li>
+                                <span (click)="onDeleteIngredient(index, 'avoid')"><i class="material-icons">close</i></span>
+                                {{ ingredient }}
+                            </li>
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+

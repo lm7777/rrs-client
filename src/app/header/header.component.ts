@@ -15,4 +15,8 @@ export class HeaderComponent {
     navigateToHome() {
         this.navigationService.navigateToHome();
     }
+
+    navigateToProfile() {
+        this.navigationService.navigateToProfile();
+    }
 }
