@@ -15,11 +15,11 @@ export class ProfileComponent {
     likedIngredients: string[] = [];
     avoidIngredients: string[] = [];
 
-    onSelect(value: string, type: string): void {
+    onSelect(value: string, liked: boolean): void {
         const values: string[] = value.split(',');
         values.forEach(v => {
             const item: string = v.trim();
-            type === 'liked' ? this.likedIngredients.push(item) : this.avoidIngredients.push(item);
+            liked ? this.likedIngredients.push(item) : this.avoidIngredients.push(item);
             const index: number = this.ingredients.indexOf(item);
             if (index > -1) {
                 this.ingredients = [...this.ingredients.slice(0, index), ...this.ingredients.slice(index + 1)];
@@ -27,7 +27,7 @@ export class ProfileComponent {
         });
     }
 
-    onDeleteIngredient(index: number, type: string) {
-        type === 'liked' ? this.likedIngredients.splice(index, 1) : this.avoidIngredients.splice(index, 1);;
+    onDeleteIngredient(index: number, liked: boolean) {
+        liked ? this.likedIngredients.splice(index, 1) : this.avoidIngredients.splice(index, 1);
     }
 }

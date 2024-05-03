@@ -8,13 +8,13 @@
             <div>
                 <h3>LIKED</h3>
                     <rrs-search-list placeholder="Search ingredients..." [options]="ingredients"
-                                     (onSelect)="onSelect($event, 'liked')"></rrs-search-list>
+                                     (onSelect)="onSelect($event, true)"></rrs-search-list>
 
                     @if (likedIngredients) {
                         <ul class="instructions-list">
                             @for (ingredient of likedIngredients; track ingredient; let index = $index) {
                                 <li>
-                                    <span (click)="onDeleteIngredient(index, 'liked')"><i class="material-icons">close</i></span>
+                                    <span (click)="onDeleteIngredient(index, true)"><i class="material-icons">close</i></span>
                                     {{ ingredient }}
                                 </li>
                             }
@@ -24,13 +24,13 @@
             <div>
                 <h3>AVOID</h3>
                 <rrs-search-list placeholder="Search ingredients..." [options]="ingredients"
-                                 (onSelect)="onSelect($event, 'avoid')"></rrs-search-list>
+                                 (onSelect)="onSelect($event, false)"></rrs-search-list>
 
-                @if (likedIngredients) {
+                @if (avoidIngredients) {
                     <ul class="instructions-list">
                         @for (ingredient of avoidIngredients; track ingredient; let index = $index) {
                             <li>
-                                <span (click)="onDeleteIngredient(index, 'avoid')"><i class="material-icons">close</i></span>
+                                <span (click)="onDeleteIngredient(index, false)"><i class="material-icons">close</i></span>
                                 {{ ingredient }}
                             </li>
                         }
