@@ -11,7 +11,8 @@ import {SearchListComponent} from "../shared/components/search-list/search-list.
   styleUrl: './profile.component.scss'
 })
 export class ProfileComponent {
-    ingredients: string[] = ['beer', 'fanta', 'schnapps', 'milk', 'almond', 'sprite', 'egg', 'cheese', 'vanilla', 'flour', 'ham', 'pork'];
+    ingredientsOriginal: string[] = ['beer', 'fanta', 'schnapps', 'milk', 'almond', 'sprite', 'egg', 'cheese', 'vanilla', 'flour', 'ham', 'pork'];
+    ingredients: string[] = [...this.ingredientsOriginal];
     likedIngredients: string[] = [];
     avoidIngredients: string[] = [];
 
@@ -28,6 +29,11 @@ export class ProfileComponent {
     }
 
     onDeleteIngredient(index: number, liked: boolean) {
+        const item = liked ? this.likedIngredients[index] : this.avoidIngredients[index];
         liked ? this.likedIngredients.splice(index, 1) : this.avoidIngredients.splice(index, 1);
+
+        if (this.ingredientsOriginal.indexOf(item) > -1) {
+            this.ingredients.push(item);
+        }
     }
 }
