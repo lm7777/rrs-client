@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import {NgClass} from "@angular/common";
+import { Component, ElementRef, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: 'rrs-star-rating',
@@ -14,9 +14,11 @@ export class StarRatingComponent implements OnInit {
     @Input() rating: number = 0;
     @Input() reviewCount: number = 0;
     @Input() reviewMode = false;
+    @ViewChildren('starsList') starsList: QueryList<ElementRef>;
 
     stars: string[] = [];
     selectedStars: number = 0;
+    hoveredStars: number = 0;
 
     ngOnInit(): void {
         const maxStarNumber: number = 5;
@@ -38,15 +40,19 @@ export class StarRatingComponent implements OnInit {
 
     addClass(star: number) {
         if (this.reviewMode) {
+            this.hoveredStars = star + 1;
+
             for (let i = 0; i <= star; i++) {
-                document.getElementById(i.toString())!.classList.add("selected");
+                this.starsList.toArray()[i].nativeElement.classList.add('selected');
             }
         }
     }
+
     removeClass(star: number) {
         if (this.reviewMode) {
+            this.hoveredStars = 0;
             for (let i = star; i >= this.selectedStars; i--) {
-                document.getElementById(i.toString())!.classList.remove("selected");
+                this.starsList.toArray()[i].nativeElement.classList.remove('selected');
             }
         }
     }
