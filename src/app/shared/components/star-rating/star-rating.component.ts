@@ -37,20 +37,17 @@ export class StarRatingComponent implements OnInit {
     }
 
     addClass(star: number) {
-        let starId = "";
         if (this.reviewMode) {
             for (let i = 0; i <= star; i++) {
-                starId = "starId" + i;
-                document.getElementById(starId)!.classList.add("selected");
+                document.getElementById(i.toString())!.classList.add("selected");
             }
         }
     }
     removeClass(star: number) {
-        let starId = "";
         if (this.reviewMode) {
-        for (let i = star; i >= this.selectedStars; i--) {
-            starId = "starId" + i;
-            document.getElementById(starId)!.classList.remove("selected");
-        }}
+            for (let i = star; i >= this.selectedStars; i--) {
+                document.getElementById(i.toString())!.classList.remove("selected");
+            }
+        }
     }
 }

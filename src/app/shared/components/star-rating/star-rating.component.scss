@@ -1,3 +1,9 @@
-.selected {
-    color: gold;
+:host {
+    .reviewMode {
+        cursor: pointer;
+    }
+
+    .selected {
+        color: gold;
+    }
 }
