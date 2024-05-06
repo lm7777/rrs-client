@@ -6,37 +6,33 @@
         </div>
         <div class="preferences">
             <div>
-                <h3>LIKED</h3>
-                    <rrs-search-list placeholder="Search ingredients..." [options]="ingredients"
-                                     (onSelect)="onSelect($event, true)"></rrs-search-list>
-
-                    @if (likedIngredients) {
-                        <ul class="instructions-list">
-                            @for (ingredient of likedIngredients; track ingredient; let index = $index) {
-                                <li>
-                                    <span (click)="onDeleteIngredient(index, true)"><i class="material-icons">close</i></span>
-                                    {{ ingredient }}
-                                </li>
-                            }
-                        </ul>
-                    }
+                <ng-container [ngTemplateOutlet]="preferenceItem" [ngTemplateOutletContext]="{
+                    title:'LIKED',
+                    ingredientsList:likedIngredients,
+                    isLiked: true}"></ng-container>
             </div>
             <div>
-                <h3>AVOID</h3>
+                <ng-container [ngTemplateOutlet]="preferenceItem" [ngTemplateOutletContext]="{
+                    title:'AVOID',
+                    ingredientsList:avoidIngredients,
+                    isLiked: false}"></ng-container>
+            </div>
+            <ng-template #preferenceItem let-title='title' let-ingredientsList='ingredientsList' let-isLiked='isLiked'>
+                <h3>{{ title }}</h3>
                 <rrs-search-list placeholder="Search ingredients..." [options]="ingredients"
-                                 (onSelect)="onSelect($event, false)"></rrs-search-list>
+                                 (onSelect)="onSelect($event, isLiked)"></rrs-search-list>
 
-                @if (avoidIngredients) {
+                @if (ingredientsList) {
                     <ul class="instructions-list">
-                        @for (ingredient of avoidIngredients; track ingredient; let index = $index) {
+                        @for (ingredient of ingredientsList; track ingredient; let index = $index) {
                             <li>
-                                <span (click)="onDeleteIngredient(index, false)"><i class="material-icons">close</i></span>
+                                <span (click)="onDeleteIngredient(index, isLiked)"><i class="material-icons">close</i></span>
                                 {{ ingredient }}
                             </li>
                         }
                     </ul>
                 }
-            </div>
+            </ng-template>
         </div>
     </div>
 </div>

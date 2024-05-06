@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import {SearchListComponent} from "../shared/components/search-list/search-list.component";
+import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'rrs-profile',
   standalone: true,
     imports: [
-        SearchListComponent
+        SearchListComponent,
+        CommonModule
     ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
