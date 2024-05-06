@@ -59,4 +59,8 @@ export class RecipeDetailsComponent implements OnInit, OnDestroy {
     isRecipeBookmarked(): boolean {
         return this.user.favoriteRecipes.includes(this.recipe.id);
     }
+
+    scroll(el: HTMLElement) {
+        el.scrollIntoView({behavior: 'smooth'});
+    }
 }

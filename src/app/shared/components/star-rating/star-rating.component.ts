@@ -19,6 +19,7 @@ export class StarRatingComponent implements OnInit {
     stars: string[] = [];
     selectedStars: number = 0;
     hoveredStars: number = 0;
+    message: string = '';
 
     ngOnInit(): void {
         const maxStarNumber: number = 5;
@@ -32,9 +33,15 @@ export class StarRatingComponent implements OnInit {
             .concat(Array(emptyStars).fill('star_border'));
     }
 
-    countStar(star: number) {
+    saveRating(star: number) {
         if (this.reviewMode) {
             this.selectedStars = star;
+
+            this.message = 'Saving your rating...';
+
+            setTimeout(() => {
+                this.message = 'Thanks for rating!';
+            }, 1000);
         }
     }
 

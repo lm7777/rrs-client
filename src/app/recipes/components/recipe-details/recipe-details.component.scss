@@ -184,5 +184,18 @@
         ul {
             list-style: none;
         }
+
+        .rating {
+            background-color: abstracts.$gray;
+            text-align: center;
+            padding: 15px 15px 30px;
+            width: 500px;
+            margin: 20px auto auto;
+            min-height: 200px;
+
+            ::ng-deep i {
+                font-size: 35px;
+            }
+        }
     }
 }
