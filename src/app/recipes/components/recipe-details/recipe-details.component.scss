@@ -80,52 +80,6 @@
 
                 .ingredients-list {
                     margin-bottom: 50px;
-                    .ingredient {
-                        display: block;
-                        min-height: 24px;
-                        position: relative;
-                        padding-left: 40px;
-                        margin-bottom: 12px;
-                        cursor: pointer;
-                        line-height: 1.5;
-
-                        input {
-                            position: absolute;
-                            opacity: 0;
-                            cursor: pointer;
-                            height: 0;
-                            width: 0;
-                            border: abstracts.$global-border;
-
-                            &:checked ~ .checkmark:after {
-                                display: block;
-
-                            }
-                        }
-
-                        .checkmark {
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            height: 22px;
-                            width: 22px;
-                            border-radius: 50%;
-                            border: abstracts.$global-border;
-
-                            &:after {
-                                content: "";
-                                position: absolute;
-                                display: none;
-                                left: 11px;
-                                top: -7px;
-                                width: 7px;
-                                height: 20px;
-                                border: abstracts.$global-border;
-                                border-width: 0 2px 2px 0;
-                                transform: rotate(45deg);
-                            }
-                        }
-                    }
                 }
 
                 ul {

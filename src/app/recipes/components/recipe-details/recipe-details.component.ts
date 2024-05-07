@@ -6,11 +6,14 @@ import { Subscription } from 'rxjs';
 import { StarRatingComponent } from '../../../shared/components/star-rating/star-rating.component';
 import { UserService } from '../../../user/services/user.service';
 import { User } from '../../../user/data/user.model';
+import { CheckboxComponent } from "../../../shared/components/checkbox/checkbox.component";
 
 @Component({
     selector: 'rrs-recipe-details',
     standalone: true,
-    imports: [StarRatingComponent],
+    imports: [
+        StarRatingComponent,
+        CheckboxComponent],
     providers: [],
     templateUrl: './recipe-details.component.html',
     styleUrl: './recipe-details.component.scss'

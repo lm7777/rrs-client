@@ -38,12 +38,7 @@
                     <div>
                         <h4>{{ ingredient.category }}</h4>
                         @for (item of ingredient.items; track item) {
-                            <label class="ingredient">{{ item.name }}
-                                {{ item.quantity }}
-                                {{ item.unitOfMeasurement }}
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                            </label>
+                            <rrs-checkbox [labelContent]="item.name + ' ' + item.quantity + ' ' + item.unitOfMeasurement"></rrs-checkbox>
                         }
                     </div>
                 }
@@ -74,5 +69,4 @@
     <div class="rating" #rating>
         <rrs-star-rating [rating]="5" [reviewCount]="5" [reviewMode]="true"/>
     </div>
-
 </div>
