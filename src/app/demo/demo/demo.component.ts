@@ -17,6 +17,16 @@ import {StarRatingComponent} from "../../shared/components/star-rating/star-rati
 export class DemoComponent {
     ingredients: string[] = ['beer', 'fanta', 'schnapps', 'milk', 'almond', 'sprite', 'egg', 'cheese', 'vanilla', 'flour', 'ham', 'pork'];
     selectedValues: string[] = [];
+    inputText1: string = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit for input1.';
+    inputText2: string = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit for input2.';
+
+    onValueChanged(value: string): void {
+        this.inputText1 = value;
+    }
+
+    onValueChanged2(value: string): void {
+        this.inputText2 = value;
+    }
 
     onSelect(value: string): void {
         const values: string[] = value.split(',');

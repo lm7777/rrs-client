@@ -25,9 +25,13 @@ export class SearchListComponent implements OnChanges {
     }
 
     onValueChanged(value: string): void {
-        this.searchValue = value;
-        this.showOptions = true;
-        this.searchOptions = this.options.filter(f => f.toLowerCase().includes(value));
+        if (!value) {
+            this.resetFilter();
+        } else {
+            this.searchValue = value;
+            this.showOptions = true;
+            this.searchOptions = this.options.filter(f => f.toLowerCase().includes(value));
+        }
     }
 
     onKeydown(event: KeyboardEvent) {

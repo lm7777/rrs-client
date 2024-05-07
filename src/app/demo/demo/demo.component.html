@@ -7,16 +7,25 @@
     }
 
 </section>
+
 <h3>Inputs:</h3>
 <div class="input-demo">
-    <rrs-input placeholder="Enter Name..."
-               value="Lorem ipsum dolor sit amet, consectetur adipiscing elit."></rrs-input>
-    <br>
-    <rrs-input placeholder="Enter Name..."
-               [showClearIcon]="true"
-               value="Lorem ipsum dolor sit amet, consectetur adipiscing elit."></rrs-input>
+    <div class="input">
+        <rrs-input placeholder="Enter Name..." (valueChange)="onValueChanged($event)"
+                   [value]="inputText1"></rrs-input>
+    </div>
+    Your text: {{ inputText1 }}
+</div>
+<div class="input-demo">
+    <div class="input">
+        <rrs-input placeholder="Enter Name..."
+                   [showClearIcon]="true" (valueChange)="onValueChanged2($event)"
+                   [value]='inputText2'></rrs-input>
+    </div>
+    Your text: {{ inputText2 }}
 </div>
 
+<h3>Star rating:</h3>
 <div class="details-rating">
     <rrs-star-rating [rating]="5" [reviewCount]="5" [reviewMode]="true"/>
 </div>

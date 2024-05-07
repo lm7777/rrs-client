@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RecipeService } from '../../services/recipe.service';
 import { Recipe } from '../../data/recipe.model';
 import { LoadingComponent } from '../../../shared/components/loading/loading.component';
-import { finalize, Subscription } from 'rxjs';
+import { delay, finalize, Subscription } from 'rxjs';
 import { IntersectionComponent } from '../../../shared/components/intersection/intersection.component';
 import { StarRatingComponent } from '../../../shared/components/star-rating/star-rating.component';
 import { NavigationService } from '../../../shared/services/navigation.service';
@@ -31,16 +31,15 @@ export class RecipesListComponent implements OnDestroy {
 
     loadRecipes(): void {
         this.loading = true;
-        setTimeout(() => {
-            this.getLatestRecipesSubscription?.unsubscribe();
-            this.getLatestRecipesSubscription = this.recipeService.getLatestRecipes()
-                .pipe(finalize(() => {
-                    this.loading = false;
-                }))
-                .subscribe((result: Recipe[]) => {
-                    this.recipesList.push(...result);
-                });
-        }, 500)
+        this.getLatestRecipesSubscription?.unsubscribe();
+        this.getLatestRecipesSubscription = this.recipeService.getLatestRecipes()
+            .pipe(delay(500))
+            .pipe(finalize(() => {
+                this.loading = false;
+            }))
+            .subscribe((result: Recipe[]) => {
+                this.recipesList.push(...result);
+            });
     }
 
     navigateToRecipeDetails(recipeId: number) {

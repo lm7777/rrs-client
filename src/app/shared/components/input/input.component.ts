@@ -18,7 +18,6 @@ export class InputComponent {
     @Input() showClearIcon: boolean = false;
 
     @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
-    @Output() valueClear: EventEmitter<string> = new EventEmitter<string>();
     @Output() focus: EventEmitter<string> = new EventEmitter();
     @Output() blur: EventEmitter<string> = new EventEmitter();
 
@@ -28,7 +27,6 @@ export class InputComponent {
 
     onClearValue()
     {
-        this.value = '';
-        this.valueClear.emit();
+        this.valueChange.emit();
     }
 }
