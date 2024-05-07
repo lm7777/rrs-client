@@ -48,9 +48,9 @@ export class StarRatingComponent implements OnInit {
     addClass(star: number) {
         if (this.reviewMode) {
             this.hoveredStars = star + 1;
-
+            const starsArray = this.starsList.toArray();
             for (let i = 0; i <= star; i++) {
-                this.starsList.toArray()[i].nativeElement.classList.add('selected');
+                starsArray[i].nativeElement.classList.add('selected');
             }
         }
     }
