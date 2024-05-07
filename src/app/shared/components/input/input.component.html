@@ -9,7 +9,7 @@
         (focus)="this.focus.emit()"
         (blur)="this.blur.emit()"
     />
-    @if (showClearIcon && value.length) {
+    @if (showClearIcon && value) {
         <i class="material-icons clear-icon" (click)="onClearValue()">close</i>
     }
 </div>
