@@ -1,7 +1,7 @@
 <div class="container">
     <div class="details">
         <div class="details-name">
-            <i class="material-icons" (click)="toggleBookmarkRecipe()">{{ isRecipeBookmarked() ? 'bookmark' : 'bookmark_border' }}</i>
+            <i class="material-icons" (click)="toggleBookmarkRecipe()">{{ recipeBookmarked ? 'bookmark' : 'bookmark_border' }}</i>
             <h1>{{ recipe.name }}</h1>
         </div>
         <div class="details-rating" (click)="scroll(rating)">

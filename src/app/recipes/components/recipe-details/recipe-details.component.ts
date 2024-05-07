@@ -22,6 +22,7 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 export class RecipeDetailsComponent {
     recipe: Recipe = new Recipe();
     user: User = new User();
+    recipeBookmarked: boolean;
 
     constructor(private route: ActivatedRoute,
                 private userService: UserService,
@@ -34,7 +35,10 @@ export class RecipeDetailsComponent {
             .pipe(switchMap((params: Params) => {
                 return this.recipeService.getRecipe(+params['id']);
             }), takeUntilDestroyed())
-            .subscribe((result: Recipe) => this.recipe = result);
+            .subscribe((result: Recipe) => {
+                this.recipe = result;
+                this.recipeBookmarked = this.isRecipeBookmarked();
+            });
     }
 
     toggleBookmarkRecipe() {
@@ -44,10 +48,12 @@ export class RecipeDetailsComponent {
         } else {
             this.user.favoriteRecipes = [...this.user.favoriteRecipes, this.recipe.id];
         }
+
+        this.recipeBookmarked = this.isRecipeBookmarked();
     }
 
-    isRecipeBookmarked(): boolean {
-        return this.user.favoriteRecipes.includes(this.recipe.id);
+    isRecipeBookmarked() {
+       return this.user.favoriteRecipes.includes(this.recipe.id);
     }
 
     scroll(el: HTMLElement) {
