@@ -18,9 +18,10 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                cursor: pointer;
+
                 i {
                     margin-right: 10px;
+                    cursor: pointer;
                 }
             }
 
@@ -109,8 +110,7 @@
 
                     li {
                         position: relative;
-                        padding-left: 40px;
-                        padding-bottom: 30px;
+                        padding: 4px 0 30px 40px;
 
                         span {
                             position: absolute;
@@ -145,7 +145,7 @@
             padding: 15px 15px 30px;
             width: 500px;
             margin: 20px auto auto;
-            min-height: 200px;
+            min-height: 245px;
 
             ::ng-deep i {
                 font-size: 35px;

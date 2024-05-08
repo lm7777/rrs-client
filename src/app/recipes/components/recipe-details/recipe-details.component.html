@@ -4,7 +4,7 @@
             <i class="material-icons" (click)="toggleBookmarkRecipe()">{{ recipeBookmarked ? 'bookmark' : 'bookmark_border' }}</i>
             <h1>{{ recipe.name }}</h1>
         </div>
-        <div class="details-rating" (click)="scroll(rating)">
+        <div (click)="scroll(rating)">
             <rrs-star-rating [rating]="recipe.rating" [reviewCount]="5"/>
         </div>
     </div>
@@ -34,11 +34,13 @@
         <div class="ingredients">
             <h2>Ingredients</h2>
             <div class="ingredients-list">
-                @for (ingredient of recipe.ingredients; track ingredient) {
+                @for (ingredient of recipe.ingredients; track ingredient; let index = $index) {
                     <div>
                         <h4>{{ ingredient.category }}</h4>
-                        @for (item of ingredient.items; track item) {
-                            <rrs-checkbox [labelContent]="item.name + ' ' + item.quantity + ' ' + item.unitOfMeasurement"></rrs-checkbox>
+                        @for (item of ingredient.items; track item; let index2 = $index) {
+                            <rrs-checkbox [labelContent]="item.name + ' ' + item.quantity + ' ' + item.unitOfMeasurement"
+                                          [isChecked]="checkedArray[index].items[index2].checked"
+                                          (change)="onCheckIngredient(ingredient.category, item.name)"></rrs-checkbox>
                         }
                     </div>
                 }
