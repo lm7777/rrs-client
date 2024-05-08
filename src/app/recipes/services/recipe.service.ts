@@ -597,8 +597,8 @@ export class RecipeService {
 
     constructor() { }
 
-    getLatestRecipes(): Observable<Recipe[]> {
-        return of(this.recipes);
+    getLatestRecipes(limit: number): Observable<Recipe[]> {
+        return of(this.recipes.slice(0, limit));
     }
 
     getRecipe(id: number): Observable<Recipe> {

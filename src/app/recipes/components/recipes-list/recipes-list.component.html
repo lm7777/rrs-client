@@ -1,6 +1,6 @@
 <div class="recipes-list-container">
-    <h1>Latest Recipes</h1>
-    <div class="recipes-list">
+    <h1>Latest Recipes {{recipesList.length > 0 ? '(' + recipesList.length + ')' : ''}}</h1>
+    <div class="recipes-list" #recipesListRef>
         @for (recipe of recipesList; track recipe.id) {
             <div class="recipe" (click)="navigateToRecipeDetails(recipe.id)" [title]="recipe.name">
                 <div class="image">

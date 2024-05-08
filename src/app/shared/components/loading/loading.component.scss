@@ -17,6 +17,7 @@
             border-radius: abstracts.$global-border-radius;
             border: abstracts.$global-border;
             background-color: abstracts.$light-salmon;
+            box-shadow: abstracts.$global-box-shadow;
 
             .material-icons {
                 &.animation {

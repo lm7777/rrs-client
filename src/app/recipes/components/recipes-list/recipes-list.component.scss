@@ -1,12 +1,19 @@
 @use '../../../../assets/abstracts';
 
 :host {
-
     .recipes-list-container {
-        margin: 20px;
-        padding: 20px;
+        padding: 20px 40px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
 
         .recipes-list {
+            overflow: auto;
+            padding: 40px 0;
+            height: 100%;
+            border-radius: abstracts.$global-border-radius;
+            box-shadow: abstracts.$global-box-shadow;
+            border: abstracts.$global-light-gray-border;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
             justify-content: center;
@@ -21,7 +28,7 @@
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
-                    gap:10px;
+                    gap: 10px;
 
                     white-space: nowrap;
                     overflow: hidden;
@@ -84,8 +91,7 @@
                 .image::after {
                     top: 4%;
                     right: -3%;
-                    background-color: abstracts.$light-salmon;
-                    opacity: 0.4;
+                    box-shadow: abstracts.$global-box-shadow;
                     z-index: abstracts.$global-negative-z-index;
                 }
             }

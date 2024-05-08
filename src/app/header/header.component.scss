@@ -1,14 +1,12 @@
 @use '../../assets/abstracts';
 
 :host {
+    height: 50px;
+
     nav {
         font-family: abstracts.$generic-header-font;
-        height: 50px;
+        height: 100%;
         background-color: abstracts.$light-salmon;
-        margin-bottom: 20px;
-        position: sticky;
-        top: 0;
-        z-index: 1;
         user-select: none;
 
         ul {
