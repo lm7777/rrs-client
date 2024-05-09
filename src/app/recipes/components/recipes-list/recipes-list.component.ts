@@ -22,7 +22,7 @@ export class RecipesListComponent implements OnDestroy, AfterViewInit {
     @ViewChild('recipesListRef') recipesListRef: ElementRef;
     private getLatestRecipesSubscription: Subscription;
     private recipeCardWidth: number = 350;
-    private recipeCardHeight: number = 250;
+    private recipeCardHeight: number = 322;
     private recipeCardGap: number = 30;
     private limit: number = 20;
 
@@ -33,7 +33,7 @@ export class RecipesListComponent implements OnDestroy, AfterViewInit {
     ngAfterViewInit(): void {
         const elem = this.recipesListRef.nativeElement;
         const columns: number = Math.floor(elem.offsetWidth / (this.recipeCardWidth + this.recipeCardGap));
-        const rows: number = Math.floor(elem.offsetHeight / (this.recipeCardHeight + this.recipeCardGap)) + 1;
+        const rows: number = Math.ceil(elem.offsetHeight / (this.recipeCardHeight + this.recipeCardGap)) + 1;
         this.limit = columns * rows;
     }
 

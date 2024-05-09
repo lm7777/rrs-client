@@ -7,92 +7,97 @@
         display: flex;
         flex-direction: column;
 
-        .recipes-list {
-            overflow: auto;
-            padding: 40px 0;
+        .recipes-list-frame {
             height: 100%;
+            padding: 40px 0;
             border-radius: abstracts.$global-border-radius;
             box-shadow: abstracts.$global-box-shadow;
             border: abstracts.$global-light-gray-border;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
-            justify-content: center;
-            gap: 30px;
+            overflow: auto;
 
-            .recipe {
+            .recipes-list {
+                overflow-x: hidden;
+                height: 100%;
                 display: grid;
-                grid-template-rows: 250px min-content;
-                row-gap: 20px;
+                grid-template-columns: repeat(auto-fit, 350px);
+                justify-content: space-evenly;
+                gap: 30px;
 
-                .description {
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    gap: 10px;
+                .recipe {
+                    display: grid;
+                    grid-template-rows: 250px;
+                    row-gap: 20px;
 
-                    white-space: nowrap;
-                    overflow: hidden;
+                    .description {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        gap: 10px;
 
-                    .rating {
-                        ::ng-deep i {
-                            font-size: 14px;
-                        }
-
-                        rrs-star-rating {
-                            display: flex;
-                            align-items: center;
-                        }
-                    }
-
-                    .title {
-                        text-overflow: ellipsis;
+                        white-space: nowrap;
                         overflow: hidden;
-                        font-family: abstracts.$generic-header-font;
+
+                        .rating {
+                            ::ng-deep i {
+                                font-size: 14px;
+                            }
+
+                            rrs-star-rating {
+                                display: flex;
+                                align-items: center;
+                            }
+                        }
+
+                        .title {
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                            font-family: abstracts.$generic-header-font;
+                        }
                     }
-                }
 
-                .image {
-                    position: relative;
-                    width: 100%;
-                    height: 100%;
-                    transition: abstracts.$global-025-transition;
+                    .image {
+                        position: relative;
+                        width: 100%;
+                        height: 100%;
+                        transition: abstracts.$global-025-transition;
 
-                    img {
-                        border-radius: abstracts.$global-border-radius;
+                        img {
+                            border-radius: abstracts.$global-border-radius;
+                            height: 100%;
+                            width: 100%;
+                            object-fit: cover;
+                        }
+                    }
+
+                    .image:hover {
+                        scale: 1.02;
+                        cursor: pointer;
+
+                        &::before {
+                            background: none;
+                        }
+                    }
+
+                    .image:before,
+                    .image:after {
+                        content: "";
+                        position: absolute;
                         height: 100%;
                         width: 100%;
-                        object-fit: cover;
+                        border-radius: abstracts.$global-border-radius;
+                        transition: abstracts.$global-025-transition;
                     }
-                }
 
-                .image:hover {
-                    scale: 1.02;
-                    cursor: pointer;
-
-                    &::before {
-                        background: none;
+                    .image:before {
+                        background-color: hsla(0, 0%, 11%, 0.1);
                     }
-                }
 
-                .image:before,
-                .image:after {
-                    content: "";
-                    position: absolute;
-                    height: 100%;
-                    width: 100%;
-                    border-radius: abstracts.$global-border-radius;
-                    transition: abstracts.$global-025-transition;
-                }
-
-                .image:before {
-                    background-color: hsla(0, 0%, 11%, 0.1);
-                }
-
-                .image::after {
-                    top: 4%;
-                    right: -3%;
-                    box-shadow: abstracts.$global-box-shadow;
-                    z-index: abstracts.$global-negative-z-index;
+                    .image::after {
+                        top: 4%;
+                        right: -3%;
+                        box-shadow: abstracts.$global-box-shadow;
+                        z-index: abstracts.$global-negative-z-index;
+                    }
                 }
             }
         }
