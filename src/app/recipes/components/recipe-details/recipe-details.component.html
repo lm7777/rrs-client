@@ -45,7 +45,7 @@
                         <h4>{{ ingredient.category }}</h4>
                         @for (item of ingredient.items; track item; let index2 = $index) {
                             <rrs-checkbox [labelContent]="item.name + ' ' + item.quantity + ' ' + item.unitOfMeasurement"
-                                          [isChecked]="checkedArray[index].items[index2].checked"
+                                          [isChecked]="selectedItems?.[storageRecipeIndex]?.categories?.[index]?.items.includes(item.name)"
                                           (change)="onCheckIngredient(ingredient.category, item.name)"></rrs-checkbox>
                         }
                     </div>
