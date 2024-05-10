@@ -20,6 +20,12 @@ RUN npm run build
 
 FROM node:${NODE_VERSION}-alpine as runtime
 
+# Use production node environment by default.
+ENV NODE_ENV production
+
+# Run the application as a non-root user.
+USER node
+
 WORKDIR /usr/src/app
 
 COPY --from=build /usr/src/app/dist /usr/src/app
