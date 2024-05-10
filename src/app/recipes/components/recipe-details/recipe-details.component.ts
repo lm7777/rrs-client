@@ -8,6 +8,8 @@ import { UserService } from '../../../user/services/user.service';
 import { User } from '../../../user/data/user.model';
 import { CheckboxComponent } from "../../../shared/components/checkbox/checkbox.component";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { CheckedItems } from "../../data/checkedItems.model";
+import { CategoryModel } from "../../data/category.model";
 
 @Component({
     selector: 'rrs-recipe-details',
@@ -23,8 +25,11 @@ export class RecipeDetailsComponent implements OnInit {
     recipe: Recipe = new Recipe();
     user: User = new User();
     recipeBookmarked: boolean;
-    selectedItems: any[] = [];
-    checkedArray:any[] = [];
+    selectedItems: CheckedItems[] = [];
+    checkedArray: CategoryModel[] = [];
+    userCheckedIngredientsKey: string;
+    showClearAll: boolean = false;
+    private isLocalStorageAvailable = typeof localStorage !== 'undefined';
 
     constructor(private route: ActivatedRoute,
                 private userService: UserService,
@@ -42,17 +47,23 @@ export class RecipeDetailsComponent implements OnInit {
                 this.recipeBookmarked = this.isRecipeBookmarked();
             });
 
-        this.selectedItems = JSON.parse(localStorage.getItem('checkedIngredients' + this.recipe.id))
+        this.userCheckedIngredientsKey = 'checkedIngredients:' + this.user.name;
+
+        if (this.isLocalStorageAvailable) {
+            this.selectedItems = JSON.parse(localStorage.getItem(this.userCheckedIngredientsKey));
+        }
     }
 
     ngOnInit() {
         this.checkedArray = this.recipe.ingredients.map(ingredient => ({
-            category: ingredient.category,
+            name: ingredient.category,
             items: ingredient.items.map(item => ({
                 name: item.name,
                 checked: this.checkIfIngredientChecked(ingredient.category, item.name)
             }))
         }));
+
+        this.showClearAll = this.isAtLeastOneIngredientChecked();
     }
 
     toggleBookmarkRecipe() {
@@ -75,35 +86,126 @@ export class RecipeDetailsComponent implements OnInit {
     }
 
     onCheckIngredient(category: string, ingredient: string) {
-        let ingredients: any[] = JSON.parse(localStorage.getItem('checkedIngredients' + this.recipe.id) || '[]');
-        const categoryIndex: number = ingredients.findIndex((item) => item.category === category);
+        let ingredients: CheckedItems[] = [];
+        if (this.isLocalStorageAvailable) {
+            ingredients = JSON.parse(localStorage.getItem(this.userCheckedIngredientsKey) || '[]');
+        }
 
-        if (categoryIndex === -1) {
+        let recipeIndex = ingredients.findIndex(item => item.recipeId === this.recipe.id);
+
+        if (ingredients.length === 10 && recipeIndex === -1) {
+            ingredients.splice(this.getOldestEditedRecipeIndex(ingredients), 1);
+        }
+
+        if (recipeIndex === -1 && ingredients.length < 10) {
             ingredients.push({
                 recipeId: this.recipe.id,
-                category: category,
-                items: [{ name: ingredient }]
+                lastEditDate: new Date().toString(),
+                categories: [{
+                    name: category,
+                    items: [{ name: ingredient }]
+                }]
             });
-        } else {
-            const itemIndex: number = ingredients[categoryIndex].items.findIndex((item: { name: string }) => item.name === ingredient);
 
-            if (itemIndex === -1) {
-                ingredients[categoryIndex].items.push({ name: ingredient });
+            this.updateItemInCheckedArray(category, ingredient, true);
+            this.showClearAll = true;
+        } else {
+            const categoryIndex = ingredients[recipeIndex].categories
+                                            .findIndex(cat => cat.name === category);
+
+            if (categoryIndex === -1) {
+                ingredients[recipeIndex].categories.push({
+                    name: category,
+                    items: [{ name: ingredient }]
+                });
+
+                this.updateItemInCheckedArray(category, ingredient, true);
+                this.showClearAll = true;
             } else {
-                ingredients[categoryIndex].items.splice(itemIndex, 1);
+                const itemIndex = ingredients[recipeIndex].categories[categoryIndex].items
+                                                                .findIndex(item => item.name === ingredient);
+
+                if (itemIndex === -1) {
+                    ingredients[recipeIndex].categories[categoryIndex].items.push({ name: ingredient });
+
+                    this.updateItemInCheckedArray(category, ingredient, true);
+                    this.showClearAll = true;
+
+                } else {
+                    ingredients[recipeIndex].categories[categoryIndex].items.splice(itemIndex, 1);
+
+                    this.updateItemInCheckedArray(category, ingredient, false);
+                }
+
+                if (ingredients[recipeIndex].categories[categoryIndex].items.length === 0) {
+                    ingredients[recipeIndex].categories.splice(categoryIndex, 1);
+                }
             }
 
-            if (ingredients[categoryIndex].items.length === 0) {
-                ingredients.splice(categoryIndex, 1);
+            ingredients[recipeIndex].lastEditDate = new Date().toString();
+            if (ingredients[recipeIndex].categories.length === 0) {
+                ingredients.splice(recipeIndex, 1);
             }
         }
-        localStorage.setItem('checkedIngredients' + this.recipe.id, JSON.stringify(ingredients));
+
+        this.showClearAll = this.isAtLeastOneIngredientChecked();
+
+        if (this.isLocalStorageAvailable) {
+            if (ingredients.length > 0) {
+                localStorage.setItem(this.userCheckedIngredientsKey, JSON.stringify(ingredients));
+            } else {
+                localStorage.removeItem(this.userCheckedIngredientsKey);
+            }
+        }
+    }
+
+    getOldestEditedRecipeIndex(ingredients: CheckedItems[]) {
+        let oldestItem = ingredients[0];
+
+        for (let i = 1; i < ingredients.length; i++) {
+            const currentItem = ingredients[i];
+
+            if (currentItem.lastEditDate < oldestItem.lastEditDate) {
+                oldestItem = currentItem;
+            }
+        }
+        return ingredients.indexOf(oldestItem);
     }
 
     checkIfIngredientChecked(category: string, ingredient: string) {
         if (!this.selectedItems) return false;
-        const categoryItems = this.selectedItems.find(item => item.category === category)?.items;
+        const categoryItems = this.selectedItems
+            .find(item => item.recipeId === this.recipe.id)?.categories
+            .find(cat => cat.name === category)?.items;
         if (!categoryItems) return false;
         return categoryItems.some((item: { name: string }) => item.name === ingredient);
+    }
+
+    onClearAllCheckedIngredients() {
+        this.showClearAll = false;
+
+        this.checkedArray.forEach(ingredient => {
+            ingredient.items.forEach(item => {
+                this.updateItemInCheckedArray(ingredient.name, item.name, false);
+            });
+        });
+
+        if (this.isLocalStorageAvailable) {
+            const ingredients: CheckedItems[] = JSON.parse(localStorage.getItem(this.userCheckedIngredientsKey));
+            const RecipeIndex = ingredients.findIndex(item => item.recipeId === this.recipe.id);
+            ingredients.splice(RecipeIndex, 1);
+            localStorage.setItem(this.userCheckedIngredientsKey, JSON.stringify(ingredients));
+        }
+    }
+
+    updateItemInCheckedArray(category: string, ingredient: string, isChecked: boolean) {
+        this.checkedArray.find(cat => cat.name === category).items
+            .find(item => item.name === ingredient).checked = isChecked;
+    }
+
+    isAtLeastOneIngredientChecked() {
+        return this.checkedArray.some(category =>
+            category.items.some(item => item.checked)
+        );
     }
 }

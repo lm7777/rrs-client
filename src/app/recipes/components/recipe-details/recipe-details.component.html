@@ -32,7 +32,13 @@
     </div>
     <div class="cooking-process">
         <div class="ingredients">
-            <h2>Ingredients</h2>
+            <div class="ingredients-clear">
+                <h2>Ingredients</h2>
+                @if(showClearAll) {
+                    <p  (click)="onClearAllCheckedIngredients()"><i class="material-icons">cancel_border</i>Clear All</p>
+                }
+            </div>
+
             <div class="ingredients-list">
                 @for (ingredient of recipe.ingredients; track ingredient; let index = $index) {
                     <div>
