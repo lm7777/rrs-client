@@ -10,6 +10,7 @@ import { CheckboxComponent } from "../../../shared/components/checkbox/checkbox.
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { CheckedRecipeIngredients } from "../../data/checkedRecipeIngredients.model";
 import { IngredientCategory } from "../../data/ingredientCategory";
+import { LocalStorageService } from '../../../shared/services/local-storage.service';
 
 @Component({
     selector: 'rrs-recipe-details',
@@ -27,15 +28,17 @@ export class RecipeDetailsComponent implements OnInit {
     recipeBookmarked: boolean;
     selectedItems: CheckedRecipeIngredients[] = [];
     storageRecipeIndex: number;
-    userCheckedIngredientsKey: string;
+    userCheckedIngredientsKey: string = 'checkedIngredients';
     showClearAll: boolean = false;
     maxStoredRecipes: number = 10;
     private isLocalStorageAvailable: boolean = typeof localStorage !== 'undefined';
 
     constructor(private route: ActivatedRoute,
                 private userService: UserService,
-                private recipeService: RecipeService) {
-        this.userService.getUserById(1)
+                private recipeService: RecipeService,
+                private localStorageService: LocalStorageService) {
+
+        this.userService.getUserInfo()
             .pipe(takeUntilDestroyed())
             .subscribe((user: User) => this.user = user);
 
@@ -48,9 +51,7 @@ export class RecipeDetailsComponent implements OnInit {
                 this.recipeBookmarked = this.isRecipeBookmarked();
             });
 
-        this.userCheckedIngredientsKey = 'checkedIngredients:' + this.user.name;
-
-       this.getFromStorage();
+        this.getFromStorage();
     }
 
     ngOnInit() {
@@ -79,7 +80,8 @@ export class RecipeDetailsComponent implements OnInit {
     onCheckIngredient(category: string, ingredient: string) {
         let ingredients: CheckedRecipeIngredients[] = [];
         if (this.isLocalStorageAvailable) {
-            ingredients = JSON.parse(localStorage.getItem(this.userCheckedIngredientsKey) || '[]');
+
+            ingredients = JSON.parse(this.localStorageService.getUserSetting(this.userCheckedIngredientsKey) || '[]');
         }
 
         let recipeIndex: number = ingredients.findIndex(item => item.recipeId === this.recipe.id);
@@ -125,9 +127,9 @@ export class RecipeDetailsComponent implements OnInit {
 
         if (this.isLocalStorageAvailable) {
             if (ingredients.length > 0) {
-                localStorage.setItem(this.userCheckedIngredientsKey, JSON.stringify(ingredients));
+                this.localStorageService.setUserSetting(this.userCheckedIngredientsKey, JSON.stringify(ingredients));
             } else {
-                localStorage.removeItem(this.userCheckedIngredientsKey);
+                this.localStorageService.removeUserSetting(this.userCheckedIngredientsKey);
             }
         }
         this.getFromStorage();
@@ -136,7 +138,7 @@ export class RecipeDetailsComponent implements OnInit {
 
     getFromStorage() {
         if (this.isLocalStorageAvailable) {
-            this.selectedItems = JSON.parse(localStorage.getItem(this.userCheckedIngredientsKey));
+            this.selectedItems = JSON.parse(this.localStorageService.getUserSetting(this.userCheckedIngredientsKey));
             this.storageRecipeIndex = -1;
             if (this.selectedItems) {
                 this.storageRecipeIndex = this.selectedItems?.findIndex((r: CheckedRecipeIngredients)=> r.recipeId === this.recipe.id);
@@ -165,8 +167,8 @@ export class RecipeDetailsComponent implements OnInit {
         if (this.isLocalStorageAvailable) {
             const RecipeIndex = this.selectedItems.findIndex(item => item.recipeId === this.recipe.id);
             this.selectedItems.splice(RecipeIndex, 1);
-            this.selectedItems.length === 0 ? localStorage.removeItem(this.userCheckedIngredientsKey) :
-                localStorage.setItem(this.userCheckedIngredientsKey, JSON.stringify(this.selectedItems));
+            this.selectedItems.length === 0 ? this.localStorageService.removeUserSetting(this.userCheckedIngredientsKey) :
+                this.localStorageService.setUserSetting(this.userCheckedIngredientsKey, JSON.stringify(this.selectedItems));
         }
     }
 
