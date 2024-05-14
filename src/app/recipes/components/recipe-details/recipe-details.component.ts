@@ -11,13 +11,16 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { CheckedRecipeIngredients } from "../../data/checkedRecipeIngredients.model";
 import { IngredientCategory } from "../../data/ingredientCategory";
 import { LocalStorageService } from '../../../shared/services/local-storage.service';
+import { CheckSelectedIngredient } from "../../data/checkSelectedIngredient.pipe";
 
 @Component({
     selector: 'rrs-recipe-details',
     standalone: true,
     imports: [
         StarRatingComponent,
-        CheckboxComponent],
+        CheckboxComponent,
+        CheckSelectedIngredient
+    ],
     providers: [],
     templateUrl: './recipe-details.component.html',
     styleUrl: './recipe-details.component.scss'
@@ -27,7 +30,7 @@ export class RecipeDetailsComponent implements OnInit {
     user: User = new User();
     recipeBookmarked: boolean;
     selectedItems: CheckedRecipeIngredients[] = [];
-    storageRecipeIndex: number;
+    storedRecipe: CheckedRecipeIngredients;
     userCheckedIngredientsKey: string = 'checkedIngredients';
     showClearAll: boolean = false;
     maxStoredRecipes: number = 10;
@@ -139,9 +142,9 @@ export class RecipeDetailsComponent implements OnInit {
     getFromStorage() {
         if (this.isLocalStorageAvailable) {
             this.selectedItems = JSON.parse(this.localStorageService.getUserSetting(this.userCheckedIngredientsKey));
-            this.storageRecipeIndex = -1;
+
             if (this.selectedItems) {
-                this.storageRecipeIndex = this.selectedItems?.findIndex((r: CheckedRecipeIngredients)=> r.recipeId === this.recipe.id);
+                this.storedRecipe = this.selectedItems.find((r: CheckedRecipeIngredients) => r.recipeId === this.recipe.id);
             }
         }
     }
@@ -162,7 +165,7 @@ export class RecipeDetailsComponent implements OnInit {
     onClearAllCheckedIngredients() {
         this.showClearAll = false;
         this.getFromStorage();
-        this.storageRecipeIndex = -1;
+        this.storedRecipe = undefined;
 
         if (this.isLocalStorageAvailable) {
             const RecipeIndex = this.selectedItems.findIndex(item => item.recipeId === this.recipe.id);
@@ -173,6 +176,6 @@ export class RecipeDetailsComponent implements OnInit {
     }
 
     updateShowClearAllStatus() {
-        this.showClearAll = this.storageRecipeIndex > -1 && this.selectedItems[this.storageRecipeIndex].categories.length > 0;
+        this.showClearAll = this.storedRecipe && this.storedRecipe.categories.length > 0;
     }
 }
