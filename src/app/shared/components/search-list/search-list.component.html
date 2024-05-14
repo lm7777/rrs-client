@@ -13,14 +13,12 @@
     </rrs-input>
     @if (showOptions) {
         <div class="search-options">
-            @if (searchOptions.length > 0) {
-                @for (item of searchOptions; track item) {
-                    <div class="option-item" (mousedown)="onSelectItem(item)">
-                        <i class="material-icons">add</i>
-                        {{ item }}
-                    </div>
-                }
-            } @else {
+            @for (item of searchOptions; track item) {
+                <div class="option-item" (mousedown)="onSelectItem(item)">
+                    <i class="material-icons">add</i>
+                    {{ item }}
+                </div>
+            } @empty {
                 <div class="option-item no-result">No results</div>
             }
         </div>

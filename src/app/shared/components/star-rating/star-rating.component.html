@@ -2,13 +2,13 @@
     <h2>Rate this recipe!</h2>
 }
 
-@for (star of stars; track star; let index = $index) {
+@for (star of stars; track star) {
     <i  #starsList class="material-icons"
-        (click)="saveRating(index+1)"
-        id="{{index}}"
-        [ngClass]="{'reviewMode': reviewMode, 'selected': (index < selectedStars && reviewMode)}"
-        (mouseover)="addClass(index)"
-        (mouseout)="removeClass(index)">{{ star }}</i>
+        (click)="saveRating($index+1)"
+        id="{{$index}}"
+        [ngClass]="{'reviewMode': reviewMode, 'selected': ($index < selectedStars && reviewMode)}"
+        (mouseover)="addClass($index)"
+        (mouseout)="removeClass($index)">{{ star }}</i>
 }
 
 @if (!reviewMode) {
