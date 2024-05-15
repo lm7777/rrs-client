@@ -73,7 +73,7 @@ export class RecipeDetailsComponent implements OnInit {
     }
 
     isRecipeBookmarked() {
-       return this.user.favoriteRecipes.includes(this.recipe.id);
+        return this.user.favoriteRecipes.includes(this.recipe.id);
     }
 
     scroll(el: HTMLElement) {
@@ -91,7 +91,11 @@ export class RecipeDetailsComponent implements OnInit {
         const categories: IngredientCategory[] = ingredients[recipeIndex]?.categories;
 
         if (ingredients.length === this.maxStoredRecipes && recipeIndex === -1) {
-            ingredients.splice(this.getOldestEditedRecipeIndex(ingredients), 1);
+            ingredients.sort(
+                (a, b) =>
+                    new Date(a.lastEditDate).getTime() - new Date(b.lastEditDate).getTime()
+            );
+            ingredients.splice(0, 1);
         }
 
         if (recipeIndex === -1 && ingredients.length < this.maxStoredRecipes) {
@@ -147,19 +151,6 @@ export class RecipeDetailsComponent implements OnInit {
                 this.storedRecipe = this.selectedItems.find((r: CheckedRecipeIngredients) => r.recipeId === this.recipe.id);
             }
         }
-    }
-
-    getOldestEditedRecipeIndex(ingredients: CheckedRecipeIngredients[]) {
-        let oldestItem = ingredients[0];
-
-        for (let i = 1; i < ingredients.length; i++) {
-            const currentItem = ingredients[i];
-
-            if (currentItem.lastEditDate < oldestItem.lastEditDate) {
-                oldestItem = currentItem;
-            }
-        }
-        return ingredients.indexOf(oldestItem);
     }
 
     onClearAllCheckedIngredients() {

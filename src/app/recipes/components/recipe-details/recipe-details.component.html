@@ -40,10 +40,10 @@
             </div>
 
             <div class="ingredients-list">
-                @for (ingredient of recipe.ingredients; track ingredient; let index = $index) {
+                @for (ingredient of recipe.ingredients; track ingredient) {
                     <div>
                         <h4>{{ ingredient.category }}</h4>
-                        @for (item of ingredient.items; track item; let index2 = $index) {
+                        @for (item of ingredient.items; track item) {
                             <rrs-checkbox [labelContent]="item.name + ' ' + item.quantity + ' ' + item.unitOfMeasurement"
                                           [isChecked]="storedRecipe | CheckSelectedIngredient:ingredient.category:item.name"
                                           (change)="onCheckIngredient(ingredient.category, item.name)"></rrs-checkbox>
