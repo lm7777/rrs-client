@@ -1,0 +1,56 @@
+@use '../../../../assets/abstracts';
+
+:host {
+    .search-container {
+        display: flex;
+        padding: 5px 0;
+        border-radius: abstracts.$global-border-radius;
+        border: abstracts.$global-border;
+        min-width: 250px;
+        position: relative;
+
+        .icon {
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+        }
+
+        .search-input {
+            width: 100%;
+
+            ::ng-deep input {
+                border: none;
+            }
+        }
+    }
+
+    .search-options {
+        position: absolute;
+        top: 36px;
+        width: 100%;
+        max-height: 250px;
+        overflow: auto;
+        border-radius: abstracts.$global-border-radius;
+        border: abstracts.$global-border;
+        background-color: abstracts.$white;
+        z-index: 1;
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 5px;
+            cursor: pointer;
+
+            &.no-result {
+                cursor: default;
+                pointer-events: none;
+            }
+
+            &:hover:not(.no-result) {
+                background: abstracts.$light-salmon;
+                color: abstracts.$white;
+            }
+        }
+    }
+}

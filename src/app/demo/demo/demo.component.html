@@ -1,15 +1,31 @@
+<h3>Search list:</h3>
 <section class="search-list">
-  <app-search-list placeholder="Search ingredients..." [options]="ingredients"
-                   (onSelect)="onSelect($event)"></app-search-list>
+    <rrs-search-list placeholder="Search ingredients..." [options]="ingredients"
+                     (onSelect)="onSelect($event)"></rrs-search-list>
     @if (selectedValues) {
         You selected: {{ selectedValues.join(', ') }}
     }
 
 </section>
-<section>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquet sed diam gravida molestie. Donec a interdum est.
-    Fusce lectus est, vulputate id ligula eu, dapibus ullamcorper sem. Nullam eget commodo lorem. Etiam id hendrerit mauris, nec
-    dictum magna. Cras dictum nulla a risus lobortis lacinia. Cras luctus porta leo vitae efficitur. Sed vitae fringilla nibh.
-    Quisque et purus sed velit porttitor lacinia. Suspendisse risus sapien, molestie non semper et, blandit sit amet magna.
-    Curabitur eleifend arcu non velit fermentum auctor.
-</section>
+
+<h3>Inputs:</h3>
+<div class="input-demo">
+    <div class="input">
+        <rrs-input placeholder="Enter Name..." (valueChange)="onValueChanged($event)"
+                   [value]="inputText1"></rrs-input>
+    </div>
+    Your text: {{ inputText1 }}
+</div>
+<div class="input-demo">
+    <div class="input">
+        <rrs-input placeholder="Enter Name..."
+                   [showClearIcon]="true" (valueChange)="onValueChanged2($event)"
+                   [value]='inputText2'></rrs-input>
+    </div>
+    Your text: {{ inputText2 }}
+</div>
+
+<h3>Star rating:</h3>
+<div class="details-rating">
+    <rrs-star-rating [rating]="5" [reviewCount]="5" [reviewMode]="true"/>
+</div>

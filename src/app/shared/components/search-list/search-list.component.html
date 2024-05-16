@@ -1,0 +1,26 @@
+<section class="search-container">
+    <div class="icon">
+        <i class="material-icons">search</i>
+    </div>
+    <rrs-input class="search-input"
+               [value]="searchValue"
+               [placeholder]="placeholder"
+               [showClearIcon]="true"
+               (valueChange)="onValueChanged($event)"
+               (focus)="showOptions = true"
+               (blur)="showOptions = false"
+               (keydown)="onKeydown($event)">
+    </rrs-input>
+    @if (showOptions) {
+        <div class="search-options">
+            @for (item of searchOptions; track item) {
+                <div class="option-item" (mousedown)="onSelectItem(item)">
+                    <i class="material-icons">add</i>
+                    {{ item }}
+                </div>
+            } @empty {
+                <div class="option-item no-result">No results</div>
+            }
+        </div>
+    }
+</section>

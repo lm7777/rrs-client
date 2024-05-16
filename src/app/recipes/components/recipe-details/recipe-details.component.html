@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="details">
+        <div class="details-name">
+            <i class="material-icons" (click)="toggleBookmarkRecipe()">{{ recipeBookmarked ? 'bookmark' : 'bookmark_border' }}</i>
+            <h1>{{ recipe.name }}</h1>
+        </div>
+        <div (click)="scroll(rating)">
+            <rrs-star-rating [rating]="recipe.rating" [reviewCount]="5"/>
+        </div>
+    </div>
+    <div class="description">
+        <p>{{ recipe.description }}</p>
+        <div class="recipe-image">
+            <img [src]="recipe.imageUrl">
+        </div>
+        <div class="cooking-time">
+            <ul>
+                <li>
+                    <span>PREP TIME</span>
+                    <span>{{ recipe.prepTime }}</span>
+                </li>
+                <li>
+                    <span>COOK TIME</span>
+                    <span>{{ recipe.cookTime }}</span>
+                </li>
+                <li>
+                    <span>SERVINGS</span>
+                    <span>{{ recipe.servings }}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="cooking-process">
+        <div class="ingredients">
+            <div class="ingredients-clear">
+                <h2>Ingredients</h2>
+                @if(showClearAll) {
+                    <p  (click)="onClearAllCheckedIngredients()"><i class="material-icons">cancel_border</i>Clear All</p>
+                }
+            </div>
+
+            <div class="ingredients-list">
+                @for (ingredient of recipe.ingredients; track ingredient) {
+                    <div>
+                        <h4>{{ ingredient.category }}</h4>
+                        @for (item of ingredient.items; track item) {
+                            <rrs-checkbox [labelContent]="item.name + ' ' + item.quantity + ' ' + item.unitOfMeasurement"
+                                          [isChecked]="storedRecipe | CheckSelectedIngredient:ingredient.category:item.name"
+                                          (change)="onCheckIngredient(ingredient.category, item.name)"></rrs-checkbox>
+                        }
+                    </div>
+                }
+            </div>
+
+            <h2>Nutrition Facts</h2>
+            <ul class="nutrition">
+                @for (nutritionFact of recipe.nutritionFacts; track nutritionFact) {
+                    <li>
+                        <span>{{ nutritionFact.name }}</span>
+                        <span>{{ nutritionFact.value }}</span>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="instructions">
+            <h2>Instructions</h2>
+            <ul class="instructions-list">
+                @for (instruction of recipe.instructions; track instruction; let step = $index) {
+                    <li>
+                        <span>{{ step + 1 }}</span>
+                        {{ instruction }}
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="rating" #rating>
+        <rrs-star-rating [rating]="5" [reviewCount]="5" [reviewMode]="true"/>
+    </div>
+</div>

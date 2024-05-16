@@ -1,0 +1,8 @@
+@use 'colors';
+
+$global-border-radius: 5px;
+$global-border: solid 1px colors.$rusty-brown;
+$global-light-gray-border: solid 1px colors.$light-gray;
+$global-box-shadow: 0 0 20px colors.$light-gray;
+$global-025-transition: all 0.25s ease-in-out;
+$global-negative-z-index: -1;

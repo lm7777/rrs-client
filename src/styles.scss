@@ -1,4 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+@use 'assets/abstracts';
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-  margin: 0;
+    height: 100vh;
+    margin: 0;
+    font-family: abstracts.$generic-details-font;
+}
+
+i {
+    color: abstracts.$rusty-brown;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: abstracts.$generic-header-font;
 }

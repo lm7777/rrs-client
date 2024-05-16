@@ -1,0 +1,15 @@
+<div class="input-container">
+    <input
+        [class.clearable]="showClearIcon"
+        [(ngModel)]="value"
+        [type]="type"
+        [placeholder]="placeholder"
+        [disabled]="disabled"
+        (input)="onInputChanged()"
+        (focus)="this.focus.emit()"
+        (blur)="this.blur.emit()"
+    />
+    @if (showClearIcon && value) {
+        <i class="material-icons clear-icon" (click)="onClearValue()">close</i>
+    }
+</div>

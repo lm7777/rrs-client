@@ -1,0 +1,40 @@
+<div class="container">
+    <h1>Profile</h1>
+    <div class="profile-container">
+        <div class="buttons">
+            <button type="button">Change Password</button>
+        </div>
+        <div class="preferences">
+            <div>
+                <ng-container [ngTemplateOutlet]="preferenceItem" [ngTemplateOutletContext]="{
+                    title:'LIKED',
+                    ingredientsList:likedIngredients,
+                    isLiked: true}"></ng-container>
+            </div>
+            <div>
+                <ng-container [ngTemplateOutlet]="preferenceItem" [ngTemplateOutletContext]="{
+                    title:'AVOID',
+                    ingredientsList:avoidIngredients,
+                    isLiked: false}"></ng-container>
+            </div>
+            <ng-template #preferenceItem let-title='title' let-ingredientsList='ingredientsList' let-isLiked='isLiked'>
+                <h3>{{ title }}</h3>
+                <rrs-search-list placeholder="Search ingredients..." [options]="ingredients"
+                                 (onSelect)="onSelect($event, isLiked)"></rrs-search-list>
+
+                @if (ingredientsList) {
+                    <ul class="instructions-list">
+                        @for (ingredient of ingredientsList; track ingredient) {
+                            <li>
+                                <span (click)="onDeleteIngredient($index, isLiked)"><i class="material-icons">close</i></span>
+                                {{ ingredient }}
+                            </li>
+                        }
+                    </ul>
+                }
+            </ng-template>
+        </div>
+    </div>
+</div>
+
+

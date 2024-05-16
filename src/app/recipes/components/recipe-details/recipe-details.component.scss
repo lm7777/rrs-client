@@ -1,0 +1,168 @@
+@use '../../../../assets/abstracts';
+
+:host {
+    .container {
+        padding: 20px 40px;
+        text-align: justify;
+
+        .details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            i {
+                font-size: 40px;
+            }
+
+            .details-name {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                i {
+                    margin-right: 10px;
+                    cursor: pointer;
+                }
+            }
+
+            rrs-star-rating {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+            }
+        }
+
+        .description {
+            margin: 0 50px;
+
+            ul {
+                display: flex;
+                flex-wrap: wrap;
+                padding: 0;
+
+                li {
+                    padding: 5px 30px;
+                    &:first-child {
+                        padding-left: 0;
+                    }
+                    &:nth-child(2) {
+                        border-left: 1px solid abstracts.$rusty-brown;
+                        border-right: 1px solid abstracts.$rusty-brown;
+                    }
+                    span{
+                        display: block;
+                    }
+                }
+            }
+
+            .recipe-image {
+                img {
+                    width: 50%;
+                    height: 50%;
+                }
+            }
+
+            .cooking-time {
+                span:nth-of-type(even) {
+                    font-weight: bold;
+                }
+            }
+        }
+
+        .cooking-process {
+            display: flex;
+            margin: 0 50px;
+
+            .ingredients {
+                width: 30%;
+                min-width: 150px;
+                padding-right: 50px;
+                font-weight: 200;
+
+                .ingredients-clear {
+                    p {
+                        display: flex;
+                        align-items: center;
+                        cursor: pointer;
+
+                        i {
+                            width: 24px;
+                            margin-right: 10px;
+                        }
+                    }
+                }
+
+                .ingredients-list {
+                    margin-bottom: 50px;
+                }
+
+                ul {
+                    width: 100%;
+                    padding: 0;
+
+                    li {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 5px 0 5px 0;
+                        border-bottom: abstracts.$global-border;
+                    }
+                }
+
+                .nutrition {
+                    width: 250px;
+                }
+            }
+
+
+            .instructions {
+                width: 70%;
+
+                .instructions-list {
+                    padding: 0;
+
+                    li {
+                        position: relative;
+                        padding: 4px 0 30px 40px;
+
+                        span {
+                            position: absolute;
+                            top: 2px;
+                            left: 0;
+                            width: 24px;
+                            height: 24px;
+                            border-radius: 100%;
+                            background-color: abstracts.$rusty-brown;
+                            font-weight: 500;
+                            font-size: 14px;
+                            color: abstracts.$white;
+                            text-align: center;
+                            line-height: 22px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            flex-direction: column;
+                        }
+                    }
+                }
+            }
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .rating {
+            background-color: abstracts.$gray;
+            text-align: center;
+            padding: 15px 15px 30px;
+            width: 500px;
+            margin: 20px auto auto;
+            min-height: 245px;
+
+            ::ng-deep i {
+                font-size: 35px;
+            }
+        }
+    }
+}

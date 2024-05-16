@@ -1,0 +1,12 @@
+@use '../../../../assets/abstracts';
+
+
+:host {
+    .reviewMode {
+        cursor: pointer;
+    }
+
+    .selected {
+        color: abstracts.$gold;
+    }
+}

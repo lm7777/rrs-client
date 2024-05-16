@@ -1,0 +1,34 @@
+@use '../../../../assets/abstracts';
+
+:host {
+    .input-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        .clear-icon {
+            position: absolute;
+            right: 5px;
+            cursor: pointer;
+        }
+
+        input {
+            border-radius: abstracts.$global-border-radius;
+            border: abstracts.$global-border;
+            width: 100%;
+            height: 100%;
+            padding: 5px;
+            overflow:hidden;
+            text-overflow:ellipsis;
+
+            &.clearable {
+                padding-right: 30px;
+            }
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+    }
+}

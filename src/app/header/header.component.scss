@@ -1,38 +1,39 @@
-@import '../../assets/colors';
+@use '../../assets/abstracts';
 
-nav {
-  font-family: 'Playfair Display', serif;
-  height: 50px;
-  background-color: $light-salmon;
-  margin-bottom: 20px;
-  position: sticky;
-  top: 0;
-  z-index: 1;
+:host {
+    height: 50px;
 
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0 50px;
+    nav {
+        font-family: abstracts.$generic-header-font;
+        height: 100%;
+        background-color: abstracts.$light-salmon;
+        user-select: none;
 
-    li {
-      float: left;
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0 50px;
 
-      &.nav-right {
-        float: right;
-      }
+            li {
+                float: left;
 
-      a {
-        font-size: 20px;
-        display: block;
-        padding: 10px 10px;
-        color: $black;
-        cursor: pointer;
+                &.nav-right {
+                    float: right;
+                }
 
-        i {
-          padding-top: 4px;
-          color: $rusty-brown;
+                a {
+                    font-size: 20px;
+                    display: block;
+                    padding: 10px 10px;
+                    color: abstracts.$black;
+                    cursor: pointer;
+
+                    i {
+                        padding-top: 4px;
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }
+

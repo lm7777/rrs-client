@@ -1,0 +1,28 @@
+<div class="recipes-list-container">
+    <h1>Latest Recipes {{ recipesList.length > 0 ? '(' + recipesList.length + ')' : '' }}</h1>
+    <div class="recipes-list-frame">
+        <div class="recipes-list" #recipesListRef>
+            @for (recipe of recipesList; track recipe.id) {
+                <div class="recipe" (click)="navigateToRecipeDetails(recipe.id)" [title]="recipe.name">
+                    <div class="image">
+                        <img [src]="recipe.imageUrl" [alt]="recipe.name"/>
+                    </div>
+                    <div class="description">
+                        <div class="rating">
+                            <rrs-star-rating [rating]="recipe.rating"/>
+                        </div>
+                        <div class="title">
+                            {{ recipe.name }}
+                        </div>
+                    </div>
+
+                </div>
+            }
+            <rrs-intersection (onIntersection)="loadRecipes()"></rrs-intersection>
+        </div>
+    </div>
+</div>
+
+@if (loading) {
+    <rrs-loading [loading]="loading"></rrs-loading>
+}
