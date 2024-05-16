@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import { ActivatedRoute, Params } from "@angular/router";
 import { Recipe } from "../../data/recipe.model";
 import { RecipeService } from "../../services/recipe.service";
@@ -12,6 +12,7 @@ import { CheckedRecipeIngredients } from "../../data/checkedRecipeIngredients.mo
 import { IngredientCategory } from "../../data/ingredientCategory";
 import { LocalStorageService } from '../../../shared/services/local-storage.service';
 import { CheckSelectedIngredient } from "../../data/checkSelectedIngredient.pipe";
+import {isPlatformBrowser} from "@angular/common";
 
 @Component({
     selector: 'rrs-recipe-details',
@@ -34,12 +35,12 @@ export class RecipeDetailsComponent implements OnInit {
     userCheckedIngredientsKey: string = 'checkedIngredients';
     showClearAll: boolean = false;
     maxStoredRecipes: number = 10;
-    private isLocalStorageAvailable: boolean = typeof localStorage !== 'undefined';
 
     constructor(private route: ActivatedRoute,
                 private userService: UserService,
                 private recipeService: RecipeService,
-                private localStorageService: LocalStorageService) {
+                private localStorageService: LocalStorageService,
+                @Inject(PLATFORM_ID) private platformId: Object) {
 
         this.userService.getUserInfo()
             .pipe(takeUntilDestroyed())
@@ -53,11 +54,13 @@ export class RecipeDetailsComponent implements OnInit {
                 this.recipe = result;
                 this.recipeBookmarked = this.isRecipeBookmarked();
             });
-
-        this.getFromStorage();
     }
 
     ngOnInit() {
+        if (isPlatformBrowser(this.platformId)) {
+            this.getFromStorage();
+        }
+
         this.updateShowClearAllStatus();
     }
 
@@ -81,11 +84,7 @@ export class RecipeDetailsComponent implements OnInit {
     }
 
     onCheckIngredient(category: string, ingredient: string) {
-        let ingredients: CheckedRecipeIngredients[] = [];
-        if (this.isLocalStorageAvailable) {
-
-            ingredients = JSON.parse(this.localStorageService.getUserSetting(this.userCheckedIngredientsKey) || '[]');
-        }
+        let ingredients: CheckedRecipeIngredients[] = JSON.parse(this.localStorageService.getUserSetting(this.userCheckedIngredientsKey) || '[]');
 
         let recipeIndex: number = ingredients.findIndex(item => item.recipeId === this.recipe.id);
         const categories: IngredientCategory[] = ingredients[recipeIndex]?.categories;
@@ -123,6 +122,7 @@ export class RecipeDetailsComponent implements OnInit {
 
                 if (selectedCategory.items.length === 0) {
                     categories.splice(categoryIndex, 1);
+                    this.onClearAllCheckedIngredients();
                 }
             }
 
@@ -132,24 +132,20 @@ export class RecipeDetailsComponent implements OnInit {
             }
         }
 
-        if (this.isLocalStorageAvailable) {
-            if (ingredients.length > 0) {
-                this.localStorageService.setUserSetting(this.userCheckedIngredientsKey, JSON.stringify(ingredients));
-            } else {
-                this.localStorageService.removeUserSetting(this.userCheckedIngredientsKey);
-            }
+        if (ingredients.length > 0) {
+            this.localStorageService.setUserSetting(this.userCheckedIngredientsKey, JSON.stringify(ingredients));
+        } else {
+            this.localStorageService.removeUserSetting(this.userCheckedIngredientsKey);
         }
         this.getFromStorage();
         this.updateShowClearAllStatus();
     }
 
     getFromStorage() {
-        if (this.isLocalStorageAvailable) {
-            this.selectedItems = JSON.parse(this.localStorageService.getUserSetting(this.userCheckedIngredientsKey));
+        this.selectedItems = JSON.parse(this.localStorageService.getUserSetting(this.userCheckedIngredientsKey));
 
-            if (this.selectedItems) {
-                this.storedRecipe = this.selectedItems.find((r: CheckedRecipeIngredients) => r.recipeId === this.recipe.id);
-            }
+        if (this.selectedItems) {
+            this.storedRecipe = this.selectedItems.find((r: CheckedRecipeIngredients) => r.recipeId === this.recipe.id);
         }
     }
 
@@ -158,12 +154,10 @@ export class RecipeDetailsComponent implements OnInit {
         this.getFromStorage();
         this.storedRecipe = undefined;
 
-        if (this.isLocalStorageAvailable) {
-            const RecipeIndex = this.selectedItems.findIndex(item => item.recipeId === this.recipe.id);
-            this.selectedItems.splice(RecipeIndex, 1);
-            this.selectedItems.length === 0 ? this.localStorageService.removeUserSetting(this.userCheckedIngredientsKey) :
-                this.localStorageService.setUserSetting(this.userCheckedIngredientsKey, JSON.stringify(this.selectedItems));
-        }
+        const RecipeIndex = this.selectedItems.findIndex(item => item.recipeId === this.recipe.id);
+        this.selectedItems.splice(RecipeIndex, 1);
+        this.selectedItems.length === 0 ? this.localStorageService.removeUserSetting(this.userCheckedIngredientsKey) :
+            this.localStorageService.setUserSetting(this.userCheckedIngredientsKey, JSON.stringify(this.selectedItems));
     }
 
     updateShowClearAllStatus() {
