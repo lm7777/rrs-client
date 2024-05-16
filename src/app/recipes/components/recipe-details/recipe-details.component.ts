@@ -13,6 +13,7 @@ import { IngredientCategory } from "../../data/ingredientCategory";
 import { LocalStorageService } from '../../../shared/services/local-storage.service';
 import { CheckSelectedIngredient } from "../../data/checkSelectedIngredient.pipe";
 import {isPlatformBrowser} from "@angular/common";
+import {IngredientsService} from "../../services/ingredients.service";
 
 @Component({
     selector: 'rrs-recipe-details',
@@ -40,6 +41,7 @@ export class RecipeDetailsComponent implements OnInit {
                 private userService: UserService,
                 private recipeService: RecipeService,
                 private localStorageService: LocalStorageService,
+                private ingredientsService: IngredientsService,
                 @Inject(PLATFORM_ID) private platformId: Object) {
 
         this.userService.getUserInfo()
@@ -84,7 +86,7 @@ export class RecipeDetailsComponent implements OnInit {
     }
 
     onCheckIngredient(category: string, ingredient: string) {
-        let ingredients: CheckedRecipeIngredients[] = JSON.parse(this.localStorageService.getUserSetting(this.userCheckedIngredientsKey) || '[]');
+        let ingredients: CheckedRecipeIngredients[] = this.ingredientsService.getParsedUserSetting(this.userCheckedIngredientsKey);
 
         let recipeIndex: number = ingredients.findIndex(item => item.recipeId === this.recipe.id);
         const categories: IngredientCategory[] = ingredients[recipeIndex]?.categories;
@@ -98,23 +100,13 @@ export class RecipeDetailsComponent implements OnInit {
         }
 
         if (recipeIndex === -1 && ingredients.length < this.maxStoredRecipes) {
-            ingredients.push({
-                recipeId: this.recipe.id,
-                lastEditDate: new Date().toString(),
-                categories: [{
-                    name: category,
-                    items: [ingredient]
-                }]
-            });
+            this.ingredientsService.storeNewRecipe(ingredients, this.recipe.id, new Date().toString(), category, ingredient);
         } else {
             const categoryIndex: number = categories.findIndex(cat => cat.name === category);
             const selectedCategory: IngredientCategory = categories[categoryIndex];
 
             if (categoryIndex === -1) {
-                ingredients[recipeIndex].categories.push({
-                    name: category,
-                    items: [ingredient]
-                });
+                this.ingredientsService.storeNewCategory(ingredients, recipeIndex, category, ingredient);
             } else {
                 const itemIndex: number = selectedCategory.items.findIndex(item => item === ingredient);
 
@@ -142,7 +134,7 @@ export class RecipeDetailsComponent implements OnInit {
     }
 
     getFromStorage() {
-        this.selectedItems = JSON.parse(this.localStorageService.getUserSetting(this.userCheckedIngredientsKey));
+        this.selectedItems = this.ingredientsService.getParsedUserSetting(this.userCheckedIngredientsKey);
 
         if (this.selectedItems) {
             this.storedRecipe = this.selectedItems.find((r: CheckedRecipeIngredients) => r.recipeId === this.recipe.id);
